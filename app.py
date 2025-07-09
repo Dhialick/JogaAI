@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import requests, os
+import requests, os, random
 
 app = Flask(__name__)
 
@@ -62,7 +62,7 @@ def get_big_rawg_data(endpoint_path):
             print(f"erro na requisição: {e}")
             break
         
-        return complete_data_map
+        return complete_data_map    
 
 lista_de_generos = get_rawg_data("genres")
 lista_de_plataformas = get_rawg_data("platforms")
@@ -78,7 +78,7 @@ def homepage():
                                             tags=sorted(lista_de_tags),
                                             lojas=sorted(lista_de_lojas))
 
-@app.route("/resultado", ["GET"])
+@app.route("/resultado")
 def resultado():
     return render_template("resultado.html")
 

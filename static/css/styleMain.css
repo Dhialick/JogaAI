@@ -1,0 +1,151 @@
+@font-face {
+    font-family: "Orbitron";
+    src: url("/static/fonts/Orbitron-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Bungee";
+    src: url("/static/fonts/Bungee-Regular.ttf")
+}
+
+@font-face {
+    font-family: "Rubik";
+    src: url("/static/fonts/Rubik-Regular.ttf")
+}
+
+:root {
+    --main-color: #E1726E;
+    --secondary-color: #4DD0CC;
+    --third-color: #D9B35C;
+    --neutral-color: #F0F0F0;
+}
+
+html {
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #080807;
+    color: #F0F0F0;
+    margin: 20px 20px 20px 20px;
+    font-size: 18px;
+    font-family: "Rubik";
+    margin-top: 0px;
+}
+
+body {
+    min-width: 520px;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+header h1 {
+    margin-bottom: 0px;
+    font-family: "Orbitron";
+    font-size: 32px;
+}
+
+header h3 {
+    margin-top: 0px;
+    font-family: "Bungee";
+    font-size: 24px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30%;
+    top: 10px;
+    margin: 0;
+}
+
+header div h3 strong {
+    color: var(--secondary-color)
+}
+
+#logo img {
+    height: 200px;
+    width: 200px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto auto auto;
+    margin: 0;
+}
+
+#formulario {
+    grid-column: 1 / 3;
+    margin: 10px;
+}
+
+#resultado {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    grid-column: 3 / -1;
+    margin: 5px;
+}
+
+#resultado img {
+    height: 300px;
+    width: 300px;
+    border-radius: 8px;
+}
+
+#formulario form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+#formulario form input {
+    background-color: #5a5757ee;
+    border-radius: 8px;
+    font-family: "Orbitron";
+    width: 350px;
+    padding: 8px;
+    font-size: 13px;
+    height: 15px;
+    color: var(--third-color);
+}
+
+::placeholder {
+    color: var(--main-color);
+}
+
+button {
+    background-color: var(--main-color);
+    text-align: center;
+    color: whitesmoke;
+    height: 40px;
+    width: 300px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-family: "Bungee";
+    margin: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: scale(102%);
+}
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie-edge"/>
+        <title>Joga AI</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleMain.css') }}">
+    </head>
+    <body>
+        <header>
+            <div id="titulo">
+                <h1>Joga AI</h1>
+                <h3>Uma solução para o <strong>gamer indeciso<strong></h3>
+            </div>
+            <div id="logo">
+                <img src="{{url_for("static", filename="img/logo3.png")}}"/>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <section id="formulario">
+                    <form action="/resultado" method="POST">
+                        
+                        <label for="genre-input">Gênero</label>
+                        <input type="text" id="genre-input" name="genre" list="genre-list" placeholder="Ex: Action, Adventure, Racing, etc">
+                        <datalist id="genre-list">
+                        {% for genero in generos %}
+                            <option value="{{ genero }}"></option>
+                        {% endfor %}
+                        </datalist>
+
+
+                        <label for="platform-input">Plataforma</label>
+                        <input type="text" id="platform-input" name="platform" list="platform-list" placeholder="Ex: PC, Playstation, Android, etc">
+                        <datalist id="platform-list">
+                            {% for plataforma in plataformas %}
+                               <option value="{{ plataforma }}"></option>
+                            {% endfor %}
+                        </datalist>
+
+                        <label for="publisher-input">Publisher</label>
+                        <input type="text" id="publisher-input" name="publisher" list="publisher-list" placeholder="Ex: Bethesda, SEGA, Nintendo, etc">
+                        <datalist id="publisher-list">
+                            {% for publisher in publishers %}
+                                <option value="{{ publisher }}"></option>
+                            {% endfor %}
+                        </datalist>
+
+                        <label for="tags-input">Tag</label>
+                        <input type="text" id="tags-input" name="tag" list="tags-list" placeholder="Ex: Multiplayer, Singleplayer, Co-op, etc">
+                        <datalist id="tags-list">
+                            {% for tag in tags %}
+                                <option value="{{ tag }}"></option>
+                            {% endfor %}
+                        </datalist>
+
+                        <label for="store-input">Loja</label>
+                        <input type="text" id="store-input" name="store" list="store-list" placeholder="EX: Steam, EPIC Games, XBOX Store, etc">
+                        <datalist id="store-list">
+                           {% for loja in lojas %}
+                                <option value="{{ loja }}"></option>
+                            {% endfor %}
+                        </datalist>
+
+                        <button type="submit">Receber Recomendação!</button>
+                    </form>
+                </section>
+                <section id="resultado">
+                    <img src="{{url_for("static", filename="img/dado.png")}}" title="resultado">
+                    <span>nome</span>
+                </section>
+            </div> 
+        </main>
+        <footer>
+            <p>@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
+        </footer>
+    </body>
+</html>

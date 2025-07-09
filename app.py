@@ -70,26 +70,17 @@ lista_de_publisher = get_big_rawg_data("publishers")
 lista_de_tags = get_big_rawg_data("tags")
 lista_de_lojas = get_rawg_data("stores")
 
-@app.route("/", methods=["GET", "POST"])
-def homepage():
-    if request.method == "GET":
+@app.route("/", methods=["GET"])
+def homepage():        
         return render_template("index.html", generos=sorted(lista_de_generos),
                                             plataformas=sorted(lista_de_plataformas),
                                             publishers=sorted(lista_de_publisher),
                                             tags=sorted(lista_de_tags),
                                             lojas=sorted(lista_de_lojas))
-    elif request.method == "POST":
-        escolha_genero = request.form.get("genre")
-        escolha_plataforma = request.form.get("platform")
-        escolha_publisher = request.form.get("publisher")
-        escolha_tag = request.form.get("tag")
-        escolha_loja = request.form.get("store")
-        
-        return render_template("index.html", generos=sorted(lista_de_generos),
-                                            plataformas=sorted(lista_de_plataformas),
-                                            publishers=sorted(lista_de_publisher),
-                                            tags=sorted(lista_de_tags),
-                                            lojas=sorted(lista_de_lojas))
+
+@app.route("/resultado", ["GET"])
+def resultado():
+    return render_template("resultado.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

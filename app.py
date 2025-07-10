@@ -66,6 +66,7 @@ def get_game_list(escolhas):
 @app.route("/", methods=["GET", "POST"])
 def homepage():
     game_recommendation = None
+    
     if request.method == "POST":
         nome_genero = request.form.get("genre")
         nome_plataforma = request.form.get("platform")
@@ -86,13 +87,19 @@ def homepage():
         if raw_game_data:
             game_recommendation = random.choice(raw_game_data)        
     
-    return render_template("index.html", generos=sorted(lista_de_generos),
+        return render_template("index.html", generos=sorted(lista_de_generos),
+                                            plataformas=sorted(lista_de_plataformas),
+                                            publishers=sorted(lista_de_publisher),
+                                            tags=sorted(lista_de_tags),
+                                            lojas=sorted(lista_de_lojas),
+                                            game = game_recommendation)
+    else: 
+            return render_template("index.html", generos=sorted(lista_de_generos),
                                         plataformas=sorted(lista_de_plataformas),
                                         publishers=sorted(lista_de_publisher),
                                         tags=sorted(lista_de_tags),
                                         lojas=sorted(lista_de_lojas),
                                         game = game_recommendation)
-
 
 if __name__ == "__main__":
     app.run(debug=True)

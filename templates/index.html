@@ -73,7 +73,7 @@
                     <h2>Minha Recomendação</h2>
                     <img id="game_cover" src="{{ game.background_image}}" alt="capa" title="capa"/>
                     <h3>{{ game.name }}</h3>
-                        {% for chave, valor in choice %}
+                        {% for chave, valor in preenchida %}
                         <h5>Seleção</h5>
                         <ul>
                             <li>{{chave}}: {{valor}}</li>

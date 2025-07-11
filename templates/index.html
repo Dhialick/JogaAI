@@ -21,7 +21,7 @@
             <div class="container">
                 <section id="formulario">
                     <form action="/" method="POST">
-                        
+                        <h3>O que você busca</h3>
                         <label for="genre-input">Gênero</label>
                         <input type="text" id="genre-input" name="genre" list="genre-list" placeholder="Ex: Action, Adventure, Racing, etc">
                         <datalist id="genre-list">
@@ -67,8 +67,13 @@
                     </form>
                 </section>
                 <section id="resultado">
-                    <img src="{{url_for("static", filename="img/dado.png")}}" title="resultado">
-                    <span>nome</span>
+                    {% if not game %}
+                    <img src="{{url_for("static", filename="img/placeholder.png")}}" title="resultado">
+                    {% else %}
+                    <h2>Minha Recomendação</h2>
+                    <img id="game_cover" src="{{ game.background_image}}" alt="capa" title="capa"/>
+                    <h3>{{ game.name }}</h3>
+                    {% endif %}
                 </section>
             </div> 
         </main>

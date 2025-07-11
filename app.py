@@ -82,6 +82,8 @@ def homepage():
         nome_publisher = request.form.get("publisher")
         nome_tag = request.form.get("tag")
         nome_store = request.form.get("store")
+
+        choice = {"Gênero": nome_genero, "Plataforma": nome_plataforma,"Publisher": nome_publisher, "Tag": nome_tag, "Loja": nome_store}
         
         id_genero = lista_de_generos.get(nome_genero)
         id_plataforma = lista_de_plataformas.get(nome_plataforma)
@@ -101,6 +103,7 @@ def homepage():
                                             publishers=sorted(lista_de_publisher),
                                             tags=sorted(lista_de_tags),
                                             lojas=sorted(lista_de_lojas),
+                                            preenchida = choice,
                                             game = game_recommendation)
     else: 
             return render_template("index.html", generos=sorted(lista_de_generos),

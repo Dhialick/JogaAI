@@ -1,3 +1,4 @@
+
 const menu = document.getElementById('side_menu');
 const toggle = document.getElementById('menu_botao');
 const overlay = document.getElementById('overlay');

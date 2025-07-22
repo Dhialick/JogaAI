@@ -96,14 +96,14 @@ def homepage():
         if raw_game_data:
             game_recommendation = random.choice(raw_game_data)        
     
-        return render_template("index.html", generos=sorted(lista_de_generos),
+        return render_template("recomendar_jogo.html", generos=sorted(lista_de_generos),
                                             plataformas=sorted(lista_de_plataformas),
                                             publishers=sorted(lista_de_publisher),
                                             tags=sorted(lista_de_tags),
                                             lojas=sorted(lista_de_lojas),
                                             game = game_recommendation)
     else: 
-            return render_template("index.html", generos=sorted(lista_de_generos),
+            return render_template("recomendar_jogo.html", generos=sorted(lista_de_generos),
                                         plataformas=sorted(lista_de_plataformas),
                                         publishers=sorted(lista_de_publisher),
                                         tags=sorted(lista_de_tags),

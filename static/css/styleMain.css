@@ -61,19 +61,92 @@ header h3 {
 header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 30%;
-    top: 10px;
+    justify-content: flex-start;
     margin: 0;
+    gap: 20px;
+}
+
+#menu_botao {
+    height: 50px;
+    width: 50px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: var(--main-color);
+    position: fixed;
+    left: 5px;
+    top: 5px;
+}
+
+#side_menu {
+    position: fixed;
+    background-color: var(--main-color);
+    top: 0px;
+    left: -250px;
+    height: 100%;
+    width: 200px;
+    transition: left 0.3s ease;
+    z-index: 1001;
+}
+
+#side_menu p {
+    padding: 10px;
+    font-size: 25px;
+    font-family: "Bungee";
+}
+
+#side_menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+#side_menu li {
+    margin: 20px;
+}
+
+#side_menu a {
+    color: var(--neutral-color);
+    text-decoration: none;
+}
+
+#side_menu a:visited {
+    color: var(--neutral-color);
+    text-decoration: none;
+}
+
+#side_menu a:hover {
+    color: var(--neutral-color);
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 5px solid var(--secondary-color);
+    font-weight: bold;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1000;
 }
 
 header div h3 strong {
     color: var(--secondary-color)
 }
 
+#titulo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+}
+
 #logo img {
     height: 200px;
-    width: 200px;
+    width: auto;
 }
 
 .container {

@@ -143,6 +143,16 @@ header div h3 strong {
     background-image: url("../img/books_cover.jpg");
 }
 
+a {
+    text-decoration: none;
+}
+
+a, a:visited, a p, a:visited p {
+  text-decoration: none;
+  color: inherit;
+}
+
+
 footer {
   text-align: center;
   font-size: 0.75rem;

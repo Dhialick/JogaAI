@@ -4,8 +4,12 @@ import random
 
 bp = Blueprint('main', __name__)
 
-@bp.route("/", methods=["GET", "POST"])
+@bp.route("/")
 def homepage():
+    return render_template("index.html")
+
+@bp.route("/jogos", methods=["GET", "POST"])
+def recomendar_jogo():
     game_recommendation = None
     
     lista_de_generos = get_rawg_data("genres")

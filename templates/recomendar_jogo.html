@@ -5,14 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie-edge"/>
         <title>Joga AI</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleMain.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleJogos.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     </head>
     <body>
         <header>
-        <button id="menu_botao">
-            <i class="fa-solid fa-bars"></i>
-        </button>
             <div id="titulo">
                 <h1>Joga AI</h1>
                 <h3>Tá em dúvida? <strong>A gente te ajuda!</strong></h3>
@@ -21,22 +18,10 @@
                 <img src="{{url_for('static', filename='img/logo3.png')}}" alt="logo" />
             </div>
         </header>
-        <nav id="side_menu">
-            <p>Meu Menu</p>
-            <ul>
-                <li><a href="#"><i class="fa-solid fa-gamepad"></i> Jogos</a></li>
-                <li><a href="#"><i class="fa-solid fa-tv"></i> Series</a></li>
-                <li><a href="#"><i class="fa-solid fa-book"></i> Livros</a></li>
-                <li><a href="#"><i class="fa-solid fa-film"></i> Filmes</a></li>
-                <li><a href="#"><i class="fa-solid fa-users"></i> Sobre Nós</a></li>
-                <li><a href="#"><i class="fa-solid fa-comment-medical"></i> Feedback</a></li>
-            </ul>
-        </nav>
-        <div id="overlay"></div>
         <main>
             <div class="container">
                 <section id="formulario">
-                    <form action="/" method="POST">
+                    <form action="/jogos" method="POST">
                         <h2>Descreva o que busca</h2>
                         <label for="genre-input">Gênero</label>
                         <input type="text" id="genre-input" name="genre" list="genre-list" placeholder="Ex: Action, Adventure, Racing, etc">
@@ -96,6 +81,5 @@
         <footer>
             <p>@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
         </footer>
-        <script src="{{ url_for('static', filename='js/sideMenu.js') }}"></script>
     </body>
 </html>

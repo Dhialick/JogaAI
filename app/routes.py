@@ -53,3 +53,15 @@ def recomendar_jogo():
                                         tags=sorted(lista_de_tags),
                                         lojas=sorted(lista_de_lojas),
                                         game = game_recommendation)
+            
+@bp.route("/filmes")
+def recomendar_filme():
+    return render_template("recomendar_filme.html")
+
+@bp.route("/series")
+def recomendar_serie():
+    return render_template("recomendar_serie.html")
+
+@bp.route("/livros")
+def recomendar_livro():
+    return render_template("recomendar_livro.html")

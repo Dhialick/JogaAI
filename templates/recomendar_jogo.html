@@ -15,7 +15,7 @@
                 <h3>Tá em dúvida? <strong>A gente te ajuda!</strong></h3>
             </div>
             <div id="logo">
-                <img src="{{url_for('static', filename='img/logo3.png')}}" alt="logo" />
+                <a href="/"><img src="{{url_for('static', filename='img/logo3.png')}}" alt="logo" /></a>
             </div>
         </header>
         <main>
@@ -40,11 +40,11 @@
                             {% endfor %}
                         </datalist>
 
-                        <label for="publisher-input">Publisher</label>
-                        <input type="text" id="publisher-input" name="publisher" list="publisher-list" placeholder="Ex: Bethesda, SEGA, Nintendo, etc">
-                        <datalist id="publisher-list">
-                            {% for publisher in publishers %}
-                                <option value="{{ publisher }}"></option>
+                        <label for="year-input">Ano de Lançamento</label>
+                        <input type="text" id="year-input" name="year" list="year-list" placeholder="Ex: 2000, 2010, 2024, etc">
+                        <datalist id="year-list">
+                            {% for year in range(1990, 2025) %}
+                                <option value="{{ year }}"></option>
                             {% endfor %}
                         </datalist>
 
@@ -68,12 +68,21 @@
                     </form>
                 </section>
                 <section id="resultado">
-                    {% if not game %}
+                    {% if not dados_jogo %}
                     <img src="{{url_for('static', filename='img/placeholder.png')}}" title="resultado">
                     {% else %}
                     <h2>Minha Recomendação</h2>
-                    <img id="game_cover" src="{{ game.background_image}}" alt="capa" title="capa"/>
-                    <h3>{{ game.name }}</h3>
+                    <img id="game_cover" src="{{ dados_jogo.background_image}}" alt="capa" title="capa"/>
+                    <h3>Nome: {{ dados_jogo.titulo }}</h3>
+                    {% if dados_jogo.generos %}
+                    <h5>Generos: {{ dados_jogo.generos | join(',') }}</h5>
+                    {% endif %}
+                    {% if dados_jogo.plataformas %}
+                    <h5>Plataformas: {{ dados_jogo.plataformas | join(',') }}</h5>
+                    {% endif %}
+                    {% if dados_jogo.stores %}
+                    <h5>Lojas Disponíveis: {{ dados_jogo.stores | join(',') }}</h5>
+                    {% endif %}
                     {% endif %}
                 </section>
             </div> 

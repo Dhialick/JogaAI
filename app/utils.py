@@ -1,58 +1,28 @@
-import requests, time
+import requests, time, random
 from app.config import HEADERS, rawg_api_key
+from app.models import SessionLocal, Jogo
+from sqlalchemy import extract, cast, literal_column
+from sqlalchemy.dialects.postgresql import ARRAY, TEXT
 
-def get_rawg_data(endpoint_path):
-    complete_data_map = {}
-    page = 1
-    has_next = True
+def buscar_jogo(plataforma = None, genero = None, loja = None, ano_lancamento = None, tag = None):
+    session = SessionLocal()
+    query = session.query(Jogo)
     
-    while has_next:
-        endpoint_url = (f"https://api.rawg.io/api/{endpoint_path}?key={rawg_api_key}&page={page}&page_size=100")
+    if plataforma:
+        query = query.filter(Jogo.platforms.contains(cast([plataforma], ARRAY(TEXT))))
+    if genero:
+        query = query.filter(Jogo.genres.contains(cast([genero], ARRAY(TEXT))))
+    if loja:
+        query = query.filter((Jogo.stores.contains(cast([loja], ARRAY(TEXT)))))
+    if tag:
+        query = query.filter((Jogo.tags.contains(cast([tag], ARRAY(TEXT)))))
+    if ano_lancamento:
+        query = query.filter(extract('year', Jogo.released_date) == int(ano_lancamento))
         
-        try:
-            response = requests.get(endpoint_url, headers=HEADERS)
-            response.raise_for_status()
-            raw_data_map = response.json()
-            
-            for item in raw_data_map.get("results", []):
-                name = item.get("name")
-                
-                if endpoint_path == "genres":
-                    value = item.get("slug")
-                else:
-                    value = item.get("id")
-                
-                if name and value:
-                    complete_data_map[name] = str(value)
-                    
-            has_next = bool(raw_data_map.get("next"))
-            page += 1
-            time.sleep(1)
-            
-        except requests.exceptions.RequestException as e:
-            print(f"erro na requisição: {e}")
-            break
-        
-    return complete_data_map
-
-
-def get_game_list(escolhas):
-    page = 1
-    base_url = f"https://api.rawg.io/api/games?key={rawg_api_key}&page={page}&page_size=1000"
-            
-    for chave, item in escolhas.items():
-        if item is not None:
-            base_url += f"&{chave}={item}"
-      
-    try:
-        response = requests.get(base_url, headers=HEADERS)
-        response.raise_for_status()
-        raw_game_list = response.json()
-        raw_game_list = raw_game_list.get("results", [])
-        return raw_game_list
-
-    except requests.exceptions.RequestException as e:
-        print(f"erro ao buscar lista de jogos: {e}")
-        return []
-
-
+    jogos_filtrados = query.all()
+    session.close()
+    
+    if jogos_filtrados:
+        return random.choice(jogos_filtrados)
+    else:
+        return None

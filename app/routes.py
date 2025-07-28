@@ -1,6 +1,5 @@
 from flask import request, render_template, Blueprint
-from app.utils import get_game_list, get_rawg_data
-import random
+from app.utils import buscar_jogo
 
 bp = Blueprint('main', __name__)
 
@@ -10,49 +9,38 @@ def homepage():
 
 @bp.route("/jogos", methods=["GET", "POST"])
 def recomendar_jogo():
-    game_recommendation = None
-    
-    lista_de_generos = get_rawg_data("genres")
-    lista_de_plataformas = get_rawg_data("platforms")
-    lista_de_publisher ={
-        'Electronic Arts': 354, 'SEGA': 3408, 'Nintendo': 10681, 'Ubisoft Entertainment': 918, 'Konami': 10691, 'Activision Blizzard': 10830, 'Capcom': 2150, 'Bandai Namco Entertainment': 8352, 'Square Enix': 308, 'Atari': 1779, 'Microsoft Studios': 20987, 'THQ': 6062, 'Sony Computer Entertainment': 10212, 'Disney Interactive': 250, 'Alawar Entertainment': 3693, 'Sony Interactive Entertainment': 11687, 'Paradox Interactive': 3656, 'Plug In Digital': 515, 'PlayWay': 10392, 'Strategy First': 4253, 'Sierra On-Line': 11434, 'Atlus': 9065, 'THQ Nordic': 1283, 'Interplay Productions': 11483, 'SNK': 11893, 'Infogrames': 11453, '2K Games': 358, 'Namco': 10901, 'Warner Bros. Interactive': 350, 'Sekai Project': 3169, 'Microids': 1287, 'Taito': 10867, 'Majesco Entertainment': 1034, 'Acclaim Entertainment': 11433, 'D3 Publisher': 10782, 'Deep Silver': 311, 'Bethesda Softworks': 339, 'Devolver Digital': 1307, 'Koei Tecmo Games': 14676, '505 Games': 243, 'NIS America': 10695, '1C Company': 3370, 'Codemasters': 1294, 'Activision Value Publishing': 11620, 'Slitherine': 14672, 'Gameloft': 35, 'Team17 Digital': 402, 'BANDAI NAMCO Entertainment US': 31896, 'Kiss': 9835, 'Focus Home Interactive': 713}
+    lista_de_generos = ['Action', 'Indie', 'Adventure', 'RPG', 'Strategy', 'Shooter', 'Casual', 'Simulation', 'Puzzle', 'Arcade', 'Platformer', 'Massively Multiplayer', 'Racing', 'Sports', 'Fighting', 'Family', 'Board Games', 'Card', 'Educational']
+    lista_de_plataformas = {'PC': 4, 'macOS': 5, 'Linux': 6, 'iOS': 3, 'Android': 21, 'PlayStation 4': 18, 'Xbox One': 1, 'Nintendo Switch': 7, 'PlayStation 3': 16, 'Xbox 360': 14, 'Nintendo DS': 9, 'Wii': 11, 'Commodore / Amiga': 166, 'PlayStation 2': 15, 'Nintendo 3DS': 8, 'PlayStation': 27, 'PS Vita': 19, 'PSP': 17, 'PlayStation 5': 187, 'Xbox Series S/X': 186, 'Wii U': 10, 'NES': 49, 'SNES': 79, 'Game Boy Advance': 24, 'Genesis': 167, 'Atari ST': 34, 'Xbox': 80, 'Classic Macintosh': 55, 'GameCube': 105, 'Game Boy': 26, 'Game Boy Color': 43, 'Apple II': 41, 'SEGA Saturn': 107, 'Dreamcast': 106, 'Nintendo 64': 83, 'Atari 8-bit': 25, 'Atari 2600': 23, 'SEGA Master System': 74, 'Game Gear': 77, 'SEGA CD': 119, 'Neo Geo': 12, '3DO': 111, 'Atari 7800': 28, 'Atari 5200': 31, 'Atari Lynx': 46, 'SEGA 32X': 117, 'Jaguar': 112, 'Nintendo DSi': 13, 'Atari Flashback': 22, 'Atari XEGS': 50}
     lista_de_tags = {
         'Singleplayer': 31, '2D': 45, 'Pixel Graphics': 122, '3D': 571, 'Short': 111, 'Horror': 16, 'Steam Achievements': 40847, 'Space': 25, 'Retro': 74, 'Multiplayer': 7, 'Cute': 88, 'Atmospheric': 13, 'First-Person': 8, 'Fantasy': 64, 'fun': 2590, 'Top-Down': 61, 'Funny': 4, 'Exploration': 6, 'Colorful': 165, 'Music': 136, 'Story Rich': 118, 'RPG': 24, 'Steam Cloud': 40849, 'Full controller support': 40836, 'Family Sharing': 91686, 'Sci-fi': 32, 'Physics': 114, 'Relaxing': 138, 'Action-Adventure': 69, 'Early Access': 14, 'Dark': 41, 'Minimalist': 112, 'Anime': 134, 'Mystery': 117, 'friends': 744, 'combat': 1465, 'Point & Click': 141, 'Female Protagonist': 189, 'FPS': 30, 'Roguelike': 639, 'Comedy': 123, 'Controller': 115, 'Difficult': 49, 'Third Person': 149, 'Local Multiplayer': 72, 'Co-op': 18, 'Partial Controller Support': 40845, 'VR': 33, 'challenge': 1863, "Shoot 'Em Up": 56}
-    lista_de_lojas = get_rawg_data("stores")
+    lista_de_lojas = ['Steam', 'Playstation Store', 'Xbox Store', 'App Store', 'GOG', 'Nintendo Store', 'Xbox 360 Store', 'Google Play', 'itch.io', 'Epic Games', ]
     
-    if request.method == "POST":
-        nome_genero = request.form.get("genre")
-        nome_plataforma = request.form.get("platform")
-        nome_publisher = request.form.get("publisher")
-        nome_tag = request.form.get("tag")
-        nome_store = request.form.get("store")
-        
-        id_genero = lista_de_generos.get(nome_genero)
-        id_plataforma = lista_de_plataformas.get(nome_plataforma)
-        id_publisher = lista_de_publisher.get(nome_publisher)
-        id_tag = lista_de_tags.get(nome_tag)
-        id_store = lista_de_lojas.get(nome_store)
-        
-        escolhas = {"genres": id_genero, "platforms": id_plataforma,"publishers": id_publisher, "tags": id_tag, "stores": id_store}
-        
-        raw_game_data = get_game_list(escolhas)
-        game_recommendation = None    
-        if raw_game_data:
-            game_recommendation = random.choice(raw_game_data)        
+    plataforma = request.form.get('platform')
+    genero = request.form.get('genre')
+    loja = request.form.get('store')
+    year = request.form.get('year')
+    tag = request.form.get('tag')
     
-        return render_template("recomendar_jogo.html", generos=sorted(lista_de_generos),
-                                            plataformas=sorted(lista_de_plataformas),
-                                            publishers=sorted(lista_de_publisher),
-                                            tags=sorted(lista_de_tags),
-                                            lojas=sorted(lista_de_lojas),
-                                            game = game_recommendation)
-    else: 
-            return render_template("recomendar_jogo.html", generos=sorted(lista_de_generos),
-                                        plataformas=sorted(lista_de_plataformas),
-                                        publishers=sorted(lista_de_publisher),
-                                        tags=sorted(lista_de_tags),
-                                        lojas=sorted(lista_de_lojas),
-                                        game = game_recommendation)
+    recomendacao = buscar_jogo(plataforma=plataforma, genero=genero, loja=loja, ano_lancamento=year, tag=tag)
+    
+    if recomendacao:
+        dados = {
+            "id": recomendacao.id,
+            "titulo": recomendacao.name,
+            "generos": recomendacao.genres,
+            "plataformas": recomendacao.platforms,
+            "loja": recomendacao.stores,
+            "lancamento": recomendacao.released_date,
+            "tags": recomendacao.tags,
+            "background_image": recomendacao.background_image}
+        
+        return render_template("recomendar_jogo.html", dados_jogo = dados,
+                               plataformas=sorted(lista_de_plataformas),
+                               tags=sorted(lista_de_tags),
+                               lojas=sorted(lista_de_lojas),
+                               generos=sorted(lista_de_generos))
+    else:
+        return({"mensagem": "Nenhum jogo encontrado!"})
             
 @bp.route("/filmes")
 def recomendar_filme():
@@ -63,5 +51,5 @@ def recomendar_serie():
     return render_template("recomendar_serie.html")
 
 @bp.route("/livros")
-def recomendar_livro():
+def recomendar_livro(): 
     return render_template("recomendar_livro.html")

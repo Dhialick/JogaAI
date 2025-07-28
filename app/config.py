@@ -3,8 +3,6 @@ import os
 
 load_dotenv()
 
-rawg_api_key = os.getenv("RAWG_API_KEY")
-
 db_login = os.getenv('DB_LOGIN')
 db_senha = os.getenv('DB_SENHA')
 

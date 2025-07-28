@@ -1,5 +1,5 @@
 import requests, time, random
-from app.config import HEADERS, rawg_api_key
+from app.config import HEADERS
 from app.models import SessionLocal, Jogo
 from sqlalchemy import extract, cast, literal_column
 from sqlalchemy.dialects.postgresql import ARRAY, TEXT

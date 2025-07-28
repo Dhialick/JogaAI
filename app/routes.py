@@ -20,6 +20,7 @@ def recomendar_jogo():
         recomendacao = buscar_jogo(plataforma=plataforma, genero=genero, loja=loja, ano_lancamento=year, tag=tag)
         
         if recomendacao:
+    
             dados = {
                 "id": recomendacao.id,
                 "titulo": recomendacao.name,

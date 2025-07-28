@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine, Column, Integer, String, Date
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import declarative_base, sessionmaker
+from app.config import db_login, db_senha
 
-database_url = "postgresql://postgres:Minamoto.n21@localhost:5432/jogaai"
+database_url = "postgresql://{db_login}:{db.senha}@localhost:5432/jogaai"
 
 engine = create_engine(database_url)
 SessionLocal = sessionmaker(bind=engine)

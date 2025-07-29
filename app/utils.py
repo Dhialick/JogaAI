@@ -1,4 +1,4 @@
-import requests, time, random
+import random
 from app.config import HEADERS
 from app.models import SessionLocal, Jogo
 from sqlalchemy import extract, cast, literal_column

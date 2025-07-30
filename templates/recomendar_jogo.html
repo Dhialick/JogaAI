@@ -9,6 +9,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     </head>
     <body>
+        <nav id="menu">
+            <ul>
+                <li href="/">Home</li>
+                <li href="/filmes">Filmes</li>
+                <li href="/series">Series</li>
+                <li href="/jogos">Jogos</li>
+                <li href="/livros">Livros</li>
+                <li href="">Contato</li>
+            </ul>
+        </nav>
         <header>
             <div id="titulo">
                 <h1>Joga AI</h1>
@@ -68,20 +78,29 @@
                     </form>
                 </section>
                 <section id="resultado">
+                    {% if erro and buscou%}
+                        <p class="mensagem_erro">{{erro}}</p>
+                    {% endif %}
+
                     {% if not dados_jogo %}
-                    <img src="{{url_for('static', filename='img/placeholder.png')}}" title="resultado">
+                        <img src="{{url_for('static', filename='img/placeholder.png')}}" title="resultado">
                     {% else %}
+
                     <h2>Minha Recomendação</h2>
+
                     <img id="game_cover" src="{{ dados_jogo.background_image}}" alt="capa" title="capa"/>
-                    <h3>Nome: {{ dados_jogo.titulo }}</h3>
+                    <h5 id="nome_recomendado">{{ dados_jogo.titulo }}</h5>
+                    
                     {% if dados_jogo.generos %}
-                    <h5>Generos: {{ dados_jogo.generos | join(',') }}</h5>
+                        <h5 class="dados_recomendado">Generos: {{ dados_jogo.generos | join(', ') }}</h5>
                     {% endif %}
+
                     {% if dados_jogo.plataformas %}
-                    <h5>Plataformas: {{ dados_jogo.plataformas | join(',') }}</h5>
+                        <h5 class="dados_recomendado">Plataformas: {{ dados_jogo.plataformas | join(', ') }}</h5>
                     {% endif %}
-                    {% if dados_jogo.stores %}
-                    <h5>Lojas Disponíveis: {{ dados_jogo.stores | join(',') }}</h5>
+
+                    {% if dados_jogo.loja %}
+                        <h5 class="dados_recomendado">Lojas Disponíveis: {{ dados_jogo.loja | join(', ') }}</h5>
                     {% endif %}
                     {% endif %}
                 </section>

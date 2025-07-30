@@ -40,6 +40,31 @@ body {
     flex-direction: column;
 }
 
+#menu {
+    background-color: var(--main-color);
+    width: 100vw;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    z-index: 1000;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+#menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+#menu ul li:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -121,6 +146,14 @@ header div h3 strong {
     border-radius: 5%;
 }
 
+#nome_recomendado {
+    font-size: 1rem;
+}
+
+.dados_recomendado {
+    justify-content: left;
+}
+
 #formulario form {
     display: flex;
     flex-direction: column;
@@ -165,5 +198,5 @@ footer {
   font-size: 0.75rem;
   display: flex;
   justify-content: center;
-  margin-top: 3.125rem;
+  margin-top: 0.5rem;
 }

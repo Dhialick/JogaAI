@@ -31,19 +31,33 @@ def recomendar_jogo():
                 "tags": recomendacao.tags,
                 "background_image": recomendacao.background_image}
             
-            return render_template("recomendar_jogo.html",dados_jogo = dados,
+            return render_template("recomendar_jogo.html",
+                                dados_jogo=dados,
                                 plataformas=sorted(lista_de_plataformas),
                                 tags=sorted(lista_de_tags),
                                 lojas=sorted(lista_de_lojas),
-                                generos=sorted(lista_de_generos))
-    else:
-        return render_template("recomendar_jogo.html",
-                               dados_jogo=None,
-                               plataformas=sorted(lista_de_plataformas),
-                               tags=sorted(lista_de_tags),
-                               lojas=sorted(lista_de_lojas),
-                               generos=sorted(lista_de_generos))
-            
+                                generos=sorted(lista_de_generos),
+                                erro=None,
+                                buscou=True)
+        else:
+            return render_template("recomendar_jogo.html",
+                                dados_jogo=None,
+                                plataformas=sorted(lista_de_plataformas),
+                                tags=sorted(lista_de_tags),
+                                lojas=sorted(lista_de_lojas),
+                                generos=sorted(lista_de_generos),
+                                erro="Nenhum jogo encontrado com os critérios selecionados",
+                                buscou=True)
+
+    return render_template("recomendar_jogo.html",
+                        dados_jogo=None,
+                        plataformas=sorted(lista_de_plataformas),
+                        tags=sorted(lista_de_tags),
+                        lojas=sorted(lista_de_lojas),
+                        generos=sorted(lista_de_generos),
+                        erro=None,
+                        buscou=False)
+
 @bp.route("/filmes")
 def recomendar_filme():
     return render_template("recomendar_filme.html")
@@ -55,7 +69,3 @@ def recomendar_serie():
 @bp.route("/livros")
 def recomendar_livro(): 
     return render_template("recomendar_livro.html")
-
-@bp.route("/teste")
-def teste():
-    return render_template("recomendar_jogo.html")

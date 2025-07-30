@@ -43,7 +43,7 @@ body {
 #menu {
     background-color: var(--main-color);
     width: 100vw;
-    height: 3rem;
+    height: 3.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,18 +51,36 @@ body {
     border-bottom-right-radius: 2rem;
     z-index: 1000;
     border-bottom: 1px solid var(--secondary-color);
+    position: sticky;
+    top: 0;
 }
 
 #menu ul {
     list-style: none;
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    gap: 3rem;
+}
+
+#menu ul li {
+    transform-origin: center bottom;
+    border-bottom: 4px solid transparent;
 }
 
 #menu ul li:hover {
     transform: scale(1.1);
+    transition: transform 0.2s ease;
     cursor: pointer;
+    border-bottom: 4px solid var(--third-color);
+}
+
+#menu ul li a {
+    text-decoration: None;
+}
+
+#menu ul li a:visited {
+    text-decoration: None;
+    color: white;
 }
 
 .container {
@@ -199,4 +217,23 @@ footer {
   display: flex;
   justify-content: center;
   margin-top: 0.5rem;
+  flex-direction: column;
+}
+
+footer section p{
+    margin: 0;
+}
+
+.fa-brands {
+    font-size: 1.2rem;
+    color: var(--main-color);
+}
+
+#brands {
+    border-bottom: 1px solid rgb(48, 44, 44);
+    padding-bottom: 2%;
+}
+
+#mark {
+    margin: 0;
 }

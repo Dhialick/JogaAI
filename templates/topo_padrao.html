@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie-edge"/>
+        <title>Joga AI</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleJogos.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    </head>
+    <body>
+        <nav id="menu">
+            <ul>
+                <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="/filmes"><i class="fa-solid fa-film"></i> Filmes</a></li>
+                <li><a href="/series"><i class="fa-solid fa-tv"></i> Series</a></li>
+                <li><a href="/jogos"><i class="fa-solid fa-gamepad"></i> Jogos</a></li>
+                <li><a href="/livros"><i class="fa-solid fa-book"></i> Livros</a></li>
+            </ul>
+        </nav>
+        <header>
+            <div id="titulo">
+                <h1>Joga AI</h1>
+                <h3>Tá em dúvida? <strong>A gente te ajuda!</strong></h3>
+            </div>
+            <div id="logo">
+                <a href="/"><img src="{{url_for('static', filename='img/logo4.png')}}" alt="logo" /></a>
+            </div>
+        </header>

@@ -7,9 +7,9 @@ bp = Blueprint('main', __name__)
 def homepage():
     return render_template("index.html")
 
-@bp.route("/myprofile")
-def profilepage():
-    return render_template("myprofile.html")
+@bp.route("/login")
+def fazerLogin():
+    return render_template("paginaLogin.html")
 
 @bp.route("/jogos", methods=["GET", "POST"])
 def recomendar_jogo():
@@ -51,7 +51,7 @@ def recomendar_jogo():
                                 lojas=sorted(lista_de_lojas),
                                 generos=sorted(lista_de_generos),
                                 erro="Nenhum jogo encontrado com os critérios selecionados",
-                                buscou=True)
+                                buscou=True,)
 
     return render_template("recomendar_jogo.html",
                         dados_jogo=None,

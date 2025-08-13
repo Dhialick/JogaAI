@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Midia Match</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleMain.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-</head>
-<body>
-    <header>
-        <section id="cabeca">
-            <img src="../static/img/logo4.png"/>
-            <div>
-                <h1>Midia Match</h1>
-                <h2 id="slogan">Ta em dúvida? <strong>A gente te ajuda!</strong></h2>
-            </div>
-        </section>
-
-        <section id="login_campos">
-            <form id="login_form">
-                <fieldset>
-                    <legend>Login</legend>
-                    <label for="txtUsername">Usuário:</label>
-                    <input type="text" id="txtUsername" name="txtUsername" required>
-                    
-                    <label for="txtPassword">Senha:</label>
-                    <input type="password" id="txtPassword" name="txtPassword" required>
-
-                    <button type="submit"><i class="fa-solid fa-right-to-bracket"></i></button>
-                </fieldset>
-            </form>
-        </section>
-    </header>
+{% include 'topo_logout.html' %}
 
     <main>
         <section id="banner">
@@ -40,38 +7,6 @@
                 <br>
                  Clique em uma categoria abaixo e comece agora!
             </div>
-        </section>
-
-        <h3>&nbsp;&nbsp;Selecione uma das Categorias&nbsp;&nbsp;</h3>
-
-        <section id="menu">
-            <a href="/filmes">
-                <div class="opcao_menu">
-                    <p>Filmes</p>
-                    <i class="fa-solid fa-film"></i>
-                </div>
-            </a>
-
-            <a href="/series">
-                <div class="opcao_menu">
-                    <p>Series</p>
-                    <i class="fa-solid fa-tv"></i>
-                </div>
-            </a>
-            
-            <a href="/jogos">
-                <div class="opcao_menu">
-                    <p>Jogos</p>
-                    <i class="fa-solid fa-gamepad"></i>
-                </div>
-            </a>
-            
-            <a href="/livros">
-                <div class="opcao_menu">
-                    <p>Livros</p>
-                    <i class="fa-solid fa-book"></i>
-                </div>
-            </a>
         </section>
     </main>
     <footer>
@@ -84,5 +19,6 @@
         </section>
         <p id="mark">@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
     </footer>
+    <script src="{{url_for('static', filename='js/dropdown.js')}}"></script>
 </body>
 </html>

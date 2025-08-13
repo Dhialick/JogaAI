@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie-edge"/>
+        <title>Midia Flow</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleJogos.css') }}">
+        <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="menu">
+            <a href="/"><img id="logo" src="{{ url_for('static', filename='img/logo5.png' )}}" title="logo"/></a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                    Midias <i class="lni lni-chevron-down"></i>
+                    <ul class="dropdown-menu" style="display: none;">
+                        <a href="/filmes"><li>Filmes</li></a>
+                        <a href="/jogos"><li>Jogos</li></a>
+                        <a href="/livros"><li>Livros</li></a>
+                        <a href="/livros"><li>Series</li></a>
+                    </ul>
+                </li>
+                <li><a href="/sobre">Sobre</a></li>
+                <li><a href="/contatos">Contato</a></li>
+                <li id="login"><a href="/login">Login</a></li>
+            </ul>
+        </nav>

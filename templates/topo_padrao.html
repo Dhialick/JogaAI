@@ -6,24 +6,25 @@
         <meta http-equiv="X-UA-Compatible" content="ie-edge"/>
         <title>Joga AI</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styleJogos.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+        <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
     </head>
     <body>
-        <nav id="menu">
+        <nav class="menu">
+            <a href="/"><img id="logo" src="{{ url_for('static', filename='img/logo5.png' )}}" title="logo"/></a>
             <ul>
-                <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="/filmes"><i class="fa-solid fa-film"></i> Filmes</a></li>
-                <li><a href="/series"><i class="fa-solid fa-tv"></i> Series</a></li>
-                <li><a href="/jogos"><i class="fa-solid fa-gamepad"></i> Jogos</a></li>
-                <li><a href="/livros"><i class="fa-solid fa-book"></i> Livros</a></li>
+                <li><a href="/">Home</a></li>
+                <li class="dropdown">
+                    Midias <i class="lni lni-chevron-down"></i>
+                    <ul class="dropdown-menu" style="display: none;">
+                        <li><a href="/filmes">Filmes</a></li>
+                        <li><a href="/jogos">Jogos</a></li>
+                        <li><a href="/livros">Livros</a></li>
+                        <li><a href="/livros">Series</a></li>
+                    </ul>
+                </li>
+                <li><a href="/sobre">Sobre</a></li>
+                <li><a href="/contatos">Contato</a></li>
+                <li id="login"><a href="/login">Login</a></li>
             </ul>
         </nav>
-        <header>
-            <div id="titulo">
-                <h1>Joga AI</h1>
-                <h3>Tá em dúvida? <strong>A gente te ajuda!</strong></h3>
-            </div>
-            <div id="logo">
-                <a href="/"><img src="{{url_for('static', filename='img/logo4.png')}}" alt="logo" /></a>
-            </div>
-        </header>

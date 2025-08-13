@@ -7,6 +7,10 @@ bp = Blueprint('main', __name__)
 def homepage():
     return render_template("index.html")
 
+@bp.route("/myprofile")
+def profilepage():
+    return render_template("myprofile.html")
+
 @bp.route("/jogos", methods=["GET", "POST"])
 def recomendar_jogo():
     

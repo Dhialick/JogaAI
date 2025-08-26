@@ -3,52 +3,67 @@
         <main>
             <div class="container">
                 <section id="formulario">
-                    <form action="/jogos" method="POST">
-                        <h2>Descreva o que busca</h2>
-                        <label for="genre-input">Gênero</label>
-                        <input type="text" id="genre-input" name="genre" list="genre-list" placeholder="Ex: Action, Adventure, Racing, etc">
-                        <datalist id="genre-list">
-                        {% for genero in generos %}
-                            <option value="{{ genero }}"></option>
-                        {% endfor %}
-                        </datalist>
-
-
-                        <label for="platform-input">Plataforma</label>
-                        <input type="text" id="platform-input" name="platform" list="platform-list" placeholder="Ex: PC, Playstation, Android, etc">
-                        <datalist id="platform-list">
-                            {% for plataforma in plataformas %}
-                               <option value="{{ plataforma }}"></option>
+                    <h2>Selecione Características do Jogo</h2>
+                    <form id="form_jogos" action="/jogos" method="POST">
+                        
+                        <div class="campo">
+                            <label for="genre-input">Gênero</label>
+                            <input type="text" id="genre-input" name="genre" list="genre-list" placeholder="Ex: Action, Adventure, Racing, etc">
+                            <datalist id="genre-list">
+                            {% for genero in generos %}
+                                <option value="{{ genero }}"></option>
                             {% endfor %}
-                        </datalist>
+                            </datalist>
+                        </div>
 
-                        <label for="year-input">Ano de Lançamento</label>
-                        <input type="text" id="year-input" name="year" list="year-list" placeholder="Ex: 2000, 2010, 2024, etc">
-                        <datalist id="year-list">
-                            {% for year in range(1990, 2025) %}
-                                <option value="{{ year }}"></option>
-                            {% endfor %}
-                        </datalist>
+                        <div class="campo">
+                            <label for="platform-input">Plataforma</label>
+                            <input type="text" id="platform-input" name="platform" list="platform-list" placeholder="Ex: PC, Playstation, Android, etc">
+                            <datalist id="platform-list">
+                                {% for plataforma in plataformas %}
+                                <option value="{{ plataforma }}"></option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
 
-                        <label for="tags-input">Tag</label>
-                        <input type="text" id="tags-input" name="tag" list="tags-list" placeholder="Ex: Multiplayer, Singleplayer, Co-op, etc">
-                        <datalist id="tags-list">
-                            {% for tag in tags %}
-                                <option value="{{ tag }}"></option>
-                            {% endfor %}
-                        </datalist>
+                        <div class="campo">
+                            <label for="year-input">Ano de Lançamento</label>
+                            <input type="text" id="year-input" name="year" list="year-list" placeholder="Ex: 2000, 2010, 2024, etc">
+                            <datalist id="year-list">
+                                {% for year in range(1990, 2025) %}
+                                    <option value="{{ year }}"></option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
 
-                        <label for="store-input">Loja</label>
-                        <input type="text" id="store-input" name="store" list="store-list" placeholder="EX: Steam, EPIC Games, XBOX Store, etc">
-                        <datalist id="store-list">
-                           {% for loja in lojas %}
-                                <option value="{{ loja }}"></option>
-                            {% endfor %}
-                        </datalist>
+                        <div class="campo">
+                            <label for="tags-input">Tag</label>
+                            <input type="text" id="tags-input" name="tag" list="tags-list" placeholder="Ex: Multiplayer, Singleplayer, Co-op, etc">
+                            <datalist id="tags-list">
+                                {% for tag in tags %}
+                                    <option value="{{ tag }}"></option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
 
-                        <button type="submit">Receber Recomendação!</button>
+                        <div class="campo">
+                            <label for="store-input">Loja</label>
+                            <input type="text" id="store-input" name="store" list="store-list" placeholder="EX: Steam, EPIC Games, XBOX Store, etc">
+                            <datalist id="store-list">
+                            {% for loja in lojas %}
+                                    <option value="{{ loja }}"></option>
+                                {% endfor %}
+                            </datalist>
+                        </div>
                     </form>
+                    <br>
+                    <button type="submit" form="form_jogos">Receber Recomendação!</button>
                 </section>
+
+                <section id="dados_de_busca">
+                    <h3>Jogos Encontrados com esse filtro: {{qtd_filtrados}}</h3>
+                </section>
+
                 <section id="resultado">
                     {% if erro and buscou%}
                         <p class="mensagem_erro">{{erro}}</p>
@@ -57,23 +72,27 @@
                     {% if not dados_jogo %}
                         <img src="{{url_for('static', filename='img/placeholder.png')}}" title="resultado">
                     {% else %}
+                    
+                    <div class="game_cover">
+                        <img id="game_cover" src="{{ dados_jogo.background_image}}" alt="capa" title="capa"/>
+                    </div>
 
-                    <h2>Minha Recomendação</h2>
+                    <div class="game_data">
+                        <h5 id="nome_recomendado">&nbsp&nbsp&nbsp{{ dados_jogo.titulo }}&nbsp&nbsp&nbsp</h5>
+                        <div id="recomendados">
+                            {% if dados_jogo.generos %}
+                                <h5 class="dados_recomendado">Generos: {{ dados_jogo.generos | join(', ') }}</h5>
+                            {% endif %}
 
-                    <img id="game_cover" src="{{ dados_jogo.background_image}}" alt="capa" title="capa"/>
-                    <h5 id="nome_recomendado">{{ dados_jogo.titulo }}</h5>
-                    <div id="recomendados">
-                        {% if dados_jogo.generos %}
-                            <h5 class="dados_recomendado">Generos: {{ dados_jogo.generos | join(', ') }}</h5>
-                        {% endif %}
+                            {% if dados_jogo.plataformas %}
+                                <h5 class="dados_recomendado">Plataformas: {{ dados_jogo.plataformas | join(', ') }}</h5>
+                            {% endif %}
 
-                        {% if dados_jogo.plataformas %}
-                            <h5 class="dados_recomendado">Plataformas: {{ dados_jogo.plataformas | join(', ') }}</h5>
-                        {% endif %}
-
-                        {% if dados_jogo.loja %}
-                            <h5 class="dados_recomendado">Lojas Disponíveis: {{ dados_jogo.loja | join(', ') }}</h5>
-                        {% endif %}
+                            {% if dados_jogo.loja %}
+                                <h5 class="dados_recomendado">Lojas Disponíveis: {{ dados_jogo.loja | join(', ') }}</h5>
+                            {% endif %}
+                        </div>
+                        <button>Nova Sugestão</button>
                     </div>
                     {% endif %}
                 </section>

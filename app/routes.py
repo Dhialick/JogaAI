@@ -1,5 +1,6 @@
-from flask import request, render_template, Blueprint
+from flask import request, render_template, Blueprint, session
 from app.utils import buscar_jogo, lista_de_generos, lista_de_lojas, lista_de_plataformas, lista_de_tags
+import random
 
 bp = Blueprint('main', __name__)
 
@@ -21,7 +22,10 @@ def recomendar_jogo():
         year = request.form.get('year')
         tag = request.form.get('tag')
         
-        recomendacao = buscar_jogo(plataforma=plataforma, genero=genero, loja=loja, ano_lancamento=year, tag=tag)
+        funcao_busca = buscar_jogo(plataforma=plataforma, genero=genero, loja=loja, ano_lancamento=year, tag=tag)
+        
+        qtd_filtrados = len(funcao_busca)
+        recomendacao = random.choice(funcao_busca)
         
         if recomendacao:
     
@@ -42,7 +46,8 @@ def recomendar_jogo():
                                 lojas=sorted(lista_de_lojas),
                                 generos=sorted(lista_de_generos),
                                 erro=None,
-                                buscou=True)
+                                buscou=True,
+                                qtd_filtrados=qtd_filtrados)
         else:
             return render_template("recomendar_jogo.html",
                                 dados_jogo=None,
@@ -62,7 +67,7 @@ def recomendar_jogo():
                         erro=None,
                         buscou=False)
 
-@bp.route("/filmes")
+@bp.route("/filmes", methods=["POST", "GET"])
 def recomendar_filme():
     return render_template("recomendar_filme.html")
 

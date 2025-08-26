@@ -20,3 +20,14 @@ class Jogo(Base):
     tags = Column(ARRAY(String))
     stores = Column(ARRAY(String))
     genres = Column(ARRAY(String))
+
+class Filme(Base):
+    __tablename__ = "jogaai_filmes"
+    
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    synopsis = Column(String)
+    original_language = Column(String)
+    release_date = Column(Date)
+    poster_url = Column(String)
+    genres = Column(ARRAY(String))

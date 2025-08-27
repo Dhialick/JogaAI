@@ -8,50 +8,50 @@
                         
                         <div class="campo">
                             <label for="genre-input">Gênero</label>
-                            <input type="text" id="genre-input" name="genre" list="genre-list" placeholder="Ex: Action, Adventure, Racing, etc">
+                            <input type="text" id="genre-input" name="genre" list="genre-list" placeholder="Ex: Action, Adventure, Racing, etc" value="{{genero or ''}}">
                             <datalist id="genre-list">
-                            {% for genero in generos %}
-                                <option value="{{ genero }}"></option>
+                            {% for g in generos %}
+                                <option value="{{ g }}"></option>
                             {% endfor %}
                             </datalist>
                         </div>
 
                         <div class="campo">
                             <label for="platform-input">Plataforma</label>
-                            <input type="text" id="platform-input" name="platform" list="platform-list" placeholder="Ex: PC, Playstation, Android, etc">
+                            <input type="text" id="platform-input" name="platform" list="platform-list" placeholder="Ex: PC, Playstation, Android, etc" value="{{plataforma or ''}}">
                             <datalist id="platform-list">
-                                {% for plataforma in plataformas %}
-                                <option value="{{ plataforma }}"></option>
+                                {% for p in plataformas %}
+                                <option value="{{ p }}"></option>
                                 {% endfor %}
                             </datalist>
                         </div>
 
                         <div class="campo">
                             <label for="year-input">Ano de Lançamento</label>
-                            <input type="text" id="year-input" name="year" list="year-list" placeholder="Ex: 2000, 2010, 2024, etc">
+                            <input type="text" id="year-input" name="year" list="year-list" placeholder="Ex: 2000, 2010, 2024, etc" value="{{ano or ''}}">
                             <datalist id="year-list">
-                                {% for year in range(1990, 2025) %}
-                                    <option value="{{ year }}"></option>
+                                {% for a in range(1990, 2025) %}
+                                    <option value="{{ a }}"></option>
                                 {% endfor %}
                             </datalist>
                         </div>
 
                         <div class="campo">
                             <label for="tags-input">Tag</label>
-                            <input type="text" id="tags-input" name="tag" list="tags-list" placeholder="Ex: Multiplayer, Singleplayer, Co-op, etc">
+                            <input type="text" id="tags-input" name="tag" list="tags-list" placeholder="Ex: Multiplayer, Singleplayer, Co-op, etc" value="{{tag or ''}}">
                             <datalist id="tags-list">
-                                {% for tag in tags %}
-                                    <option value="{{ tag }}"></option>
+                                {% for t in tags %}
+                                    <option value="{{ t }}"></option>
                                 {% endfor %}
                             </datalist>
                         </div>
 
                         <div class="campo">
                             <label for="store-input">Loja</label>
-                            <input type="text" id="store-input" name="store" list="store-list" placeholder="EX: Steam, EPIC Games, XBOX Store, etc">
+                            <input type="text" id="store-input" name="store" list="store-list" placeholder="EX: Steam, EPIC Games, XBOX Store, etc" value="{{loja or ''}}">
                             <datalist id="store-list">
-                            {% for loja in lojas %}
-                                    <option value="{{ loja }}"></option>
+                            {% for l in lojas %}
+                                    <option value="{{ l }}"></option>
                                 {% endfor %}
                             </datalist>
                         </div>

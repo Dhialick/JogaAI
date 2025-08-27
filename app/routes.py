@@ -12,8 +12,15 @@ def homepage():
 def fazerLogin():
     return render_template("paginaLogin.html")
 
+
+@bp.route("/sobre")
+def sobre_nos():
+    return render_template("sobre.html")
+
 @bp.route("/jogos", methods=["GET", "POST"])
 def recomendar_jogo():
+    
+    plataforma = genero = loja = tag = year = None
     
     if request.method == 'POST':
         plataforma = request.form.get('platform')
@@ -47,7 +54,12 @@ def recomendar_jogo():
                                 generos=sorted(lista_de_generos_jogos),
                                 erro=None,
                                 buscou=True,
-                                qtd_filtrados=qtd_filtrados)
+                                qtd_filtrados=qtd_filtrados,
+                                plataforma=plataforma,
+                                genero=genero,
+                                loja=loja,
+                                year=year,
+                                tag=tag)
         else:
             return render_template("recomendar_jogo.html",
                                 dados_jogo=None,
@@ -56,7 +68,12 @@ def recomendar_jogo():
                                 lojas=sorted(lista_de_lojas_jogos),
                                 generos=sorted(lista_de_generos_jogos),
                                 erro="Nenhum jogo encontrado com os critérios selecionados",
-                                buscou=True,)
+                                buscou=True,
+                                plataforma=plataforma,
+                                genero=genero,
+                                loja=loja,
+                                year=year,
+                                tag=tag)
 
     return render_template("recomendar_jogo.html",
                         dados_jogo=None,
@@ -65,7 +82,12 @@ def recomendar_jogo():
                         lojas=sorted(lista_de_lojas_jogos),
                         generos=sorted(lista_de_generos_jogos),
                         erro=None,
-                        buscou=False)
+                        buscou=False,
+                        plataforma=plataforma,
+                        genero=genero,
+                        loja=loja,
+                        year=year,
+                        tag=tag)
 
 @bp.route("/filmes", methods=["POST", "GET"])
 def recomendar_filme():
@@ -80,6 +102,7 @@ def recomendar_serie():
         ano = request.form.get("year")
         pais = request.form.get("country")
         idioma = request.form.get("language")
+        todos_generos = list(lista_de_generos_series.keys())
     
         funcao_busca = buscar_serie(genero=genero, ano=ano, pais=pais, idioma=idioma)
         qtd_filtrados = len(funcao_busca)
@@ -98,7 +121,7 @@ def recomendar_serie():
                 "overview": recomendacao.overview
                 }
         
-            return render_template("recomendar_serie.html", generos=sorted(lista_de_generos_series),
+            return render_template("recomendar_serie.html", generos=sorted(todos_generos),
                                                         pais_origem=sorted(lista_de_paises_series),
                                                         idiomas=sorted(lista_de_idiomas_series),
                                                         qtd_filtrados=qtd_filtrados,

@@ -66,8 +66,12 @@
                         <h5 id="nome_recomendado">&nbsp&nbsp&nbsp{{ dados_serie.name }}&nbsp&nbsp&nbsp</h5>
                         <div id="recomendados">
 
+                            {% if dados_serie.original_name %}
+                                <h3>Nome Original: {{ dados_serie.original_name }}</h3>
+                            {% endif %}
+
                             {% if dados_serie.overview %}
-                                <p class="dados_recomendado_serie">{{ dados_serie.overview }}</p>
+                                <p class="dados_recomendado_serie"><strong>Sinopse:</strong>{{ dados_serie.overview }}</p>
                             {% endif %}
                         </div>
                         <button>Nova Sugestão</button>

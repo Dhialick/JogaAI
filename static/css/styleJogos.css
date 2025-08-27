@@ -68,8 +68,6 @@ a:visited {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    border-bottom-left-radius: 2rem;
-    border-bottom-right-radius: 2rem;
     z-index: 1000;
     position: sticky;
     top: 0.5rem;
@@ -253,7 +251,6 @@ button:hover {
     justify-content: space-evenly;
     padding: 0.5rem;
     box-shadow: 0 0 0 1px #2354f5;
-
 }
 
 #resultado img {

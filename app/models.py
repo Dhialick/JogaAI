@@ -31,3 +31,17 @@ class Filme(Base):
     release_date = Column(Date)
     poster_url = Column(String)
     genres = Column(ARRAY(String))
+    
+    
+class Serie(Base):
+    __tablename__ = "jogaai_series"
+    
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    genres = Column(ARRAY(Integer))
+    first_air_date = Column(Date)
+    poster_path = Column(String)
+    origin_country = Column(String)
+    original_language = Column(String)
+    original_name = Column(String)
+    overview = Column(String)

@@ -183,7 +183,8 @@ main {
     flex-direction: column;
     background-color: #2354f52c;
     padding: 0.5rem;
-    border-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
     box-shadow: 0 0 0 1px #2354f5;
     width: 100%;
 }
@@ -244,7 +245,8 @@ button:hover {
 
 #resultado {
     background-color: #2354f52c;
-    border-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -261,7 +263,18 @@ button:hover {
     max-width: auto;
     object-fit: cover;
     border-radius: 5%;
+    margin-right: 1rem;
+}
+
+#resultado #game_cover {
+    height: 18rem;
+    width: auto;
+    max-height: 15rem;
+    max-width: auto;
+    object-fit: cover;
+    border-radius: 5%;
     box-shadow: 0 0 0 1px lightgray;
+    margin-right: 1rem;
 }
 
 #nome_recomendado {
@@ -272,6 +285,10 @@ button:hover {
 
 .dados_recomendado {
     justify-content: left;
+}
+
+.dados_recomendado_serie {
+    justify-content: center;
 }
 
 .game_data {

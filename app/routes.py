@@ -1,5 +1,5 @@
 from flask import request, render_template, Blueprint, session
-from app.utils import buscar_jogo, lista_de_generos_jogos, lista_de_lojas_jogos, lista_de_plataformas_jogos, lista_de_tags_jogos, lista_de_paises_series, lista_de_generos_series, lista_de_idiomas_series, buscar_serie
+from app.utils import buscar_jogo, lista_de_generos_jogos, lista_de_lojas_jogos, lista_de_plataformas_jogos, lista_de_tags_jogos, lista_de_paises_series, lista_de_generos_series, lista_de_idiomas_series, buscar_serie, buscar_filme, lista_de_generos_filmes, lista_de_idiomas_filmes
 import random
 
 bp = Blueprint('main', __name__)
@@ -16,6 +16,8 @@ def fazerLogin():
 @bp.route("/sobre")
 def sobre_nos():
     return render_template("sobre.html")
+
+## Rotas de Recomendações
 
 @bp.route("/jogos", methods=["GET", "POST"])
 def recomendar_jogo():
@@ -92,17 +94,63 @@ def recomendar_jogo():
 @bp.route("/filmes", methods=["POST", "GET"])
 def recomendar_filme():
     
+    genre = year = language = None
+    
+    if request.method == "POST":
+        genero = request.form.get("genre")
+        ano = request.form.get("year")
+        idioma = request.form.get("language")
+    
+        funcao_busca = buscar_filme(genero=genero, ano=ano, idioma=idioma)
+        qtd_filtrados = len(funcao_busca)
+        recomendacao = random.choice(funcao_busca)
+        
+        if recomendacao:
+            dados = {"id": recomendacao.id,
+                     "title": recomendacao.title,
+                     "synopsis": recomendacao.synopsis,
+                     "original_language": recomendacao.original_language,
+                     "release_date": recomendacao.release_date,
+                     "genres": recomendacao.genres,
+                     "poster_url": recomendacao.poster_url
+                     }
+            
+            return render_template("recomendar_filme.html",
+                       genres=sorted(list(lista_de_generos_filmes.values())),
+                       languages=sorted(list(lista_de_idiomas_filmes.keys())),
+                       year=ano,
+                       qtd_filtrados=qtd_filtrados,
+                       erro=None,
+                       buscou=True,
+                       dados_filme=dados)
+
+            
+        else:
+            return render_template("recomendar_filme.html", generos=sorted(lista_de_generos_filmes),
+                                                            idioma=sorted(lista_de_idiomas_filmes),
+                                                            ano=ano,
+                                                            qtd_filtrados=qtd_filtrados,
+                                                            buscou=True,
+                                                            mensagem="Nenhum Filme encontrada com esse filtro",
+                                                            dados_filme=dados,
+                                                            genre=genre,
+                                                            year=year,
+                                                            language=language
+                                                            )
+    
+    
     return render_template("recomendar_filme.html")
 
 @bp.route("/series", methods=["POST", "GET"])
 def recomendar_serie():
+    
+    genre = year = country = language = None
     
     if request.method == "POST":
         genero = request.form.get("genre")
         ano = request.form.get("year")
         pais = request.form.get("country")
         idioma = request.form.get("language")
-        todos_generos = list(lista_de_generos_series.keys())
     
         funcao_busca = buscar_serie(genero=genero, ano=ano, pais=pais, idioma=idioma)
         qtd_filtrados = len(funcao_busca)
@@ -121,13 +169,17 @@ def recomendar_serie():
                 "overview": recomendacao.overview
                 }
         
-            return render_template("recomendar_serie.html", generos=sorted(todos_generos),
+            return render_template("recomendar_serie.html", generos=sorted(lista_de_generos_series.keys()),
                                                         pais_origem=sorted(lista_de_paises_series),
                                                         idiomas=sorted(lista_de_idiomas_series),
                                                         qtd_filtrados=qtd_filtrados,
                                                         dados_serie=dados,
                                                         erro=None,
-                                                        buscou=True)
+                                                        buscou=True,
+                                                        genre=genre,
+                                                        year=year,
+                                                        country=country,
+                                                        language=language)
         else:
             return render_template("recomendar_serie.html", generos=sorted(lista_de_generos_series),
                                                         pais_origem=sorted(lista_de_paises_series),
@@ -135,11 +187,19 @@ def recomendar_serie():
                                                         qtd_filtrados=qtd_filtrados,
                                                         dados_serie=dados,
                                                         erro="Nenhuma Serie encontrada com esse filtro",
-                                                        buscou=True)
+                                                        buscou=True,
+                                                        genre=genre,
+                                                        year=year,
+                                                        country=country,
+                                                        language=language)
     
     return render_template("recomendar_serie.html", generos=sorted(lista_de_generos_series),
                                                     pais_origem=sorted(lista_de_paises_series),
-                                                    idiomas=sorted(lista_de_idiomas_series))
+                                                    idiomas=sorted(lista_de_idiomas_series),
+                                                    genre=genre,
+                                                    year=year,
+                                                    country=country,
+                                                    language=language)
 
 @bp.route("/livros")
 def recomendar_livro(): 

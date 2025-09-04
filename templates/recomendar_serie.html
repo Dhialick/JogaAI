@@ -1,96 +1,151 @@
 {% include 'topo_logout.html' %}
 
-        <main>
-            <div class="container">
-                <section id="formulario">
-                    <h2>Características da Serie</h2>
-                    <form id="form_series" action="/series", method="POST">
-                        <div class="campo">
-                            <label for="genre-input">Gênero:</label>
-                            <input type="text" id="genre-input" name="genre" list="genre-list" placeholder="Ex: Comédia, Ação e Aventura, etc">
-                            <datalist id="genre-list">
-                                {% for genero in generos %}
-                                    <option value="{{ nome_genero  }}"></option>
-                                {% endfor %}
-                            </datalist>
-                        </div>
+<main>
+    <div class="container">
 
-                        <div class="campo">
-                            <label for="year-input">Ano de Lançamento:</label>
-                            <input type="text" id="year-input" name="year" list="year-list" placeholder="Anos entre 1940 e 2025">
-                        </div>
+        <!-- ================= FORMULÁRIO DE BUSCA ================= -->
+        <section id="formulario">
+            <h2>Características da Serie</h2>
 
-                        <div class="campo">
-                            <label for="country-input">País de Origem:</label>
-                            <input type="text" id="country-input" name="country" list="country-list" placeholder="Ex: Brasil, Argentina, Japão, etc">
-                            <datalist id="country-list">
-                                {% for pais in pais_origem %}
-                                    <option value="{{pais}}"></option>
-                                {% endfor %}
-                            </datalist>
-                        </div>
+            <!-- Formulário que envia os filtros para a rota /series -->
+            <form id="form_series" action="/series" method="POST">
 
-                        <div class="campo">
-                            <label for="language-input">Idioma Original:</label>
-                            <input type="text" id="language-input" name="language" list="language-list" placeholder="Ex: Português, Espanhol, etc">
-                            <datalist id="language-list">
-                                {% for idioma in idiomas %}
-                                    <option value="{{idioma}}"></option>
-                                {% endfor %}
-                            </datalist>
-                        </div>
+                <!-- Campo: Gênero -->
+                <div class="campo">
+                    <label for="genre-input">Gênero:</label>
+                    <input 
+                        type="text" 
+                        id="genre-input" 
+                        name="genre" 
+                        list="genre-list" 
+                        placeholder="Ex: Comédia, Ação e Aventura, etc" 
+                        value="{{genre or ''}}">
+                    <datalist id="genre-list">
+                        {% for genero in generos %}
+                            <option value="{{ genero }}"></option>
+                        {% endfor %}
+                    </datalist>
+                </div>
 
-                    </form>
-                    <br>
-                    <button type="submit" form="form_series">Receber Recomendação!</button>
-                </section>
+                <!-- Campo: Ano de Lançamento -->
+                <div class="campo">
+                    <label for="year-input">Ano de Lançamento:</label>
+                    <input 
+                        type="text" 
+                        id="year-input" 
+                        name="year" 
+                        list="year-list" 
+                        placeholder="Anos entre 1940 e 2025" 
+                        value="{{year or ''}}">
+                </div>
 
-                <section id="dados_de_busca">
-                    <h3>Series Encontradas com esse filtro: {{qtd_filtrados}}</h3>
-                </section>
-                
-                <section id="resultado">
-                    {% if erro and buscou %}
-                        <p class="mensagem_erro">{{erro}}</p>
-                    {% endif %}
+                <!-- Campo: País de Origem -->
+                <div class="campo">
+                    <label for="country-input">País de Origem:</label>
+                    <input 
+                        type="text" 
+                        id="country-input" 
+                        name="country" 
+                        list="country-list" 
+                        placeholder="Ex: Brasil, Argentina, Japão, etc" 
+                        value="{{country or ''}}">
+                    <datalist id="country-list">
+                        {% for pais in pais_origem %}
+                            <option value="{{pais}}"></option>
+                        {% endfor %}
+                    </datalist>
+                </div>
 
-                    {% if not dados_serie %}
-                        <img src="{{url_for('static', filename='img/placeholder_jogo.png')}}" title="resultado">
-                    {% else %}
+                <!-- Campo: Idioma Original -->
+                <div class="campo">
+                    <label for="language-input">Idioma Original:</label>
+                    <input 
+                        type="text" 
+                        id="language-input" 
+                        name="language" 
+                        list="language-list" 
+                        placeholder="Ex: Português, Espanhol, etc" 
+                        value="{{language or ''}}">
+                    <datalist id="language-list">
+                        {% for idioma in idiomas %}
+                            <option value="{{idioma}}"></option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+            </form>
 
-                    <div class="game_cover">
-                        <img id="game_cover" src="https://image.tmdb.org/t/p/w500{{ dados_serie.poster_path}}" alt="capa" title="capa"/>
-                    </div>
-
-                    <div class="game_data">
-                        <h5 id="nome_recomendado">&nbsp&nbsp&nbsp{{ dados_serie.name }}&nbsp&nbsp&nbsp</h5>
-                        <div id="recomendados">
-
-                            {% if dados_serie.original_name %}
-                                <h3>Nome Original: {{ dados_serie.original_name }}</h3>
-                            {% endif %}
-
-                            {% if dados_serie.overview %}
-                                <p class="dados_recomendado_serie"><strong>Sinopse:</strong>{{ dados_serie.overview }}</p>
-                            {% endif %}
-                        </div>
-                        <button>Nova Sugestão</button>
-                    </div>
-                    {% endif %}
-
-                </section>
-            </div> 
-        </main>
-    <footer>
-        <section id="brands">
-            <p>
-                <i class="fa-brands fa-square-whatsapp"></i>
-                <i class="fa-brands fa-square-linkedin"></i>
-                <i class="fa-brands fa-square-instagram"></i>
-            </p>
+            <!-- Botão para enviar o formulário -->
+            <br>
+            <button type="submit" form="form_series">Receber Recomendação!</button>
         </section>
-        <p id="mark">@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
-    </footer>
-    </body>
-    <script src="{{url_for('static', filename='js/dropdown.js')}}"></script>
+
+        <!-- ================= DADOS DA BUSCA ================= -->
+        <section id="dados_de_busca">
+            <h3>Series Encontradas com esse filtro: {{qtd_filtrados}}</h3>
+        </section>
+        
+        <!-- ================= RESULTADO ================= -->
+        <section id="resultado">
+
+            <!-- Caso tenha erro na busca -->
+            {% if erro and buscou %}
+                <p class="mensagem_erro">{{erro}}</p>
+            {% endif %}
+
+            <!-- Se não veio nenhuma série, mostra placeholder -->
+            {% if not dados_serie %}
+                <img src="{{url_for('static', filename='img/placeholder_jogo.png')}}" title="resultado">
+            {% else %}
+
+                <!-- Capa da série recomendada -->
+                <div class="game_cover">
+                    <img 
+                        id="game_cover" 
+                        src="https://image.tmdb.org/t/p/w500{{ dados_serie.poster_path }}" 
+                        alt="capa" 
+                        title="capa"/>
+                </div>
+
+                <!-- Dados da série recomendada -->
+                <div class="game_data">
+                    <h5 id="nome_recomendado">&nbsp;&nbsp;&nbsp;{{ dados_serie.name }}&nbsp;&nbsp;&nbsp;</h5>
+
+                    <div id="recomendados">
+
+                        <!-- Nome original da série -->
+                        {% if dados_serie.original_name %}
+                            <h3>Nome Original: {{ dados_serie.original_name }}</h3>
+                        {% endif %}
+
+                        <!-- Sinopse da série -->
+                        {% if dados_serie.overview %}
+                            <p class="dados_recomendado_serie">
+                                <strong>Sinopse:</strong> {{ dados_serie.overview }}
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Botão para gerar nova sugestão -->
+                    <button>Nova Sugestão</button>
+                </div>
+            {% endif %}
+        </section>
+    </div> 
+</main>
+
+<!-- ================= RODAPÉ ================= -->
+<footer>
+    <section id="brands">
+        <p>
+            <i class="fa-brands fa-square-whatsapp"></i>
+            <i class="fa-brands fa-square-linkedin"></i>
+            <i class="fa-brands fa-square-instagram"></i>
+        </p>
+    </section>
+    <p id="mark">@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
+</footer>
+
+<!-- Script JS para dropdown -->
+<script src="{{url_for('static', filename='js/dropdown.js')}}"></script>
+</body>
 </html>

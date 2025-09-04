@@ -1,32 +1,130 @@
 {% include 'topo_logout.html' %}
 
-        <main>
-            <div class="container">
-                <section id="formulario">
-                    <form>
-                        <div class="campo">
-                            <label for="genre"></label>
-                            <input>
-                        </div>
+<main>
+    <div class="container">
 
+        <!-- ================= FORMULÁRIO DE BUSCA ================= -->
+        <section id="formulario">
+            <h2>Selecione Características do Filme</h2>
 
-                    </form>
-                </section>
+            <!-- Formulário que envia os filtros para a rota /filmes -->
+            <form id="form_filmes" action="/filmes" method="POST">
+                
+                <!-- Campo: Ano de Lançamento -->
+                <div class="campo">
+                    <label for="year-input">Ano de Lançamento</label>
+                    <input 
+                        type="text" 
+                        id="year-input" 
+                        name="year" 
+                        list="year-list" 
+                        placeholder="Entre 1902 e 2025" 
+                        value="{{year or ''}}">
+                </div>
 
-                <section id="resultado">
-                </section>
-            </div> 
-        </main>
-    <footer>
-        <section id="brands">
-            <p>
-                <i class="fa-brands fa-square-whatsapp"></i>
-                <i class="fa-brands fa-square-linkedin"></i>
-                <i class="fa-brands fa-square-instagram"></i>
-            </p>
+                <!-- Campo: Gênero -->
+                <div class="campo">
+                    <label for="genre-input">Gênero</label>
+                    <input 
+                        type="text" 
+                        id="genre-input" 
+                        name="genre" 
+                        list="genre-list" 
+                        placeholder="Ex: Ação, Comédia, etc." 
+                        value="{{genre or ''}}">
+                    <datalist id="genre-list">
+                        {% for g in genres %}
+                            <option value="{{g}}"></option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+
+                <!-- Campo: Idioma -->
+                <div class="campo">
+                    <label for="language-input">Idioma</label>
+                    <input 
+                        type="text" 
+                        id="language-input" 
+                        name="language" 
+                        list="language-list" 
+                        placeholder="Ex: Português, Espanhol, etc." 
+                        value="{{language or ''}}">
+                </div>
+            </form>
+
+            <!-- Botão para enviar o formulário -->
+            <br>
+            <button type="submit" form="form_filmes">Receber Recomendação!</button>
         </section>
-        <p id="mark">@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
-    </footer>
-    </body>
-    <script src="{{url_for('static', filename='js/dropdown.js')}}"></script>
+
+        <!-- ================= DADOS DA BUSCA ================= -->
+        <section id="dados_de_busca">
+            <h3>Filmes Encontrados com esse filtro: {{qtd_filtrados}}</h3>
+        </section>
+
+        <!-- ================= RESULTADO ================= -->
+        <section id="resultado">
+
+            <!-- Caso tenha erro na busca -->
+            {% if erro and buscou %}
+                <p class="mensagem_erro">{{erro}}</p>
+            {% endif %}
+
+            <!-- Se não veio nenhum filme, mostra placeholder -->
+            {% if not dados_filme %}
+                <img src="{{url_for('static', filename='img/placeholder_jogo.png')}}" title="resultado">
+
+            {% else %}
+
+                <!-- Poster do filme recomendado -->
+                <div class="movie_cover">
+                    <img 
+                        id="movie_cover" 
+                        src="https://image.tmdb.org/t/p/w500{{ dados_filme.poster_url }}" 
+                        alt="capa" 
+                        title="capa"/>
+                </div>
+
+                <!-- Dados do filme recomendado -->
+                <div class="movie_data">
+                    <h5 id="nome_recomendado">&nbsp;&nbsp;&nbsp;{{ dados_filme.title }}&nbsp;&nbsp;&nbsp;</h5>
+
+                    <div id="recomendados">
+
+                        <!-- Idioma original -->
+                        {% if dados_filme.original_language %}
+                            <p>Idioma Original: {{ dados_filme.original_language }}</p>
+                        {% endif %}
+
+                        <!-- Sinopse -->
+                        {% if dados_filme.synopsis %}
+                            <p class="dados_recomendado_serie">
+                                <strong>Sinopse: </strong>{{ dados_filme.synopsis }}
+                            </p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Botão para gerar nova sugestão -->
+                    <button>Nova Sugestão</button>
+                </div>
+            {% endif %}
+        </section>
+    </div> 
+</main>
+
+<!-- ================= RODAPÉ ================= -->
+<footer>
+    <section id="brands">
+        <p>
+            <i class="fa-brands fa-square-whatsapp"></i>
+            <i class="fa-brands fa-square-linkedin"></i>
+            <i class="fa-brands fa-square-instagram"></i>
+        </p>
+    </section>
+    <p id="mark">@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
+</footer>
+
+<!-- Script JS para dropdown -->
+<script src="{{url_for('static', filename='js/dropdown.js')}}"></script>
+</body>
 </html>

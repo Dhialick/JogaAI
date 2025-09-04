@@ -31,8 +31,7 @@ class Filme(Base):
     release_date = Column(Date)
     poster_url = Column(String)
     genres = Column(ARRAY(String))
-    
-    
+      
 class Serie(Base):
     __tablename__ = "jogaai_series"
     

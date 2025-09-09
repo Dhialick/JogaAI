@@ -20,18 +20,18 @@
 }
 
 :root {
-    --background: #1b1a1a;
-    --textColor: #F5F5F5;
-    --main: #2354f5;
-    --icons: #FFC107;
-    --highlight: #FF6F61;
+    --neutralLight: #ffffff;    /* Fundo, textos e separadores */ 
+    --neutralDark: #111111;     /* Fundo, textos e separadores */ 
+    --main: #2354f5;            /*Ações, botões e links principais */
+    --secondary: #FFC107;       /*  */ 
+    --highlight: #1ec8ff;       /* Hovers, destaques e gradientes */
 }
 
 html {
     margin-left: 5%;
     margin-right: 5%;
-    background-color: var(--background);
-    color: var(--textColor);
+    background-color: var(--neutralLight);
+    color: var(--neutralDark);
     margin: 5% 5% 5% 5%;
     font-size: 1.125rem;
     font-family: "Rubik";
@@ -62,7 +62,7 @@ a:visited {
 */
 
 .menu {
-    background-color: var(--background);
+    background-color: var(--neutralDark);
     width: 100vw;
     height: 3.5rem;
     display: flex;
@@ -70,8 +70,9 @@ a:visited {
     align-items: center;
     z-index: 1000;
     position: sticky;
-    top: 0.5rem;
+    top: 0;
     font-size: 0.8rem;
+    color: var(--neutralLight);
 }
 
 .menu img {
@@ -98,9 +99,8 @@ a:visited {
 
 #login {
     background-color: var(--main);
-    color: var(--textColor);
+    color: var(--neutralLight);
     border-radius: 0.5rem;
-    box-shadow: 0px 0px 0px 1px black;
     border: 1px solid transparent;
     width: 3.5rem;
 }
@@ -109,16 +109,16 @@ a:visited {
     cursor: pointer;
     transform: scale(1.08);
     font-weight: bold;
-    border-top: 0.1rem solid var(--icons);
+    border-top: 0.1rem solid var(--highlight);
     transition: 0.2s ease;
 }
 
 li a {
-    color: var(--textColor);
+    color: var(--neutralLight);
 }
 
 li a:visited {
-    color: var(--textColor);
+    color: var(--neutralLight);
 }
 
 .dropdown {
@@ -126,7 +126,7 @@ li a:visited {
 }
 
 .lni-chevron-down {
-    color: var(--textColor);
+    color: var(--neutralLight);
 }
 
 .dropdown-menu {
@@ -134,7 +134,7 @@ li a:visited {
     position: absolute;
     top: 100%;
     left: 0;
-    background: var(--background);
+    background: var(--neutralDark);
     list-style: none;
     padding: 1rem;
     min-width: 100px;
@@ -147,7 +147,7 @@ li a:visited {
 
 .dropdown-menu li a {
     text-decoration: none;
-    color: var(--textColor);
+    color: var(--neutralLight);
 }
 
 .dropdown-menu li:hover {
@@ -165,6 +165,64 @@ li a:visited {
 
 main {
     margin-top: 2%;
+    display: flex;
+    flex-direction: row;
+}
+
+.chamada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    width: 400px;
+}
+
+.chamada h3 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.chamada p {
+    margin: 0;
+    font-size: 0.6rem;
+}
+
+.chamada p strong {
+    margin: 0;
+    font-size: 0.6rem;
+    color: var(--main);
+    font-weight: bold;
+}
+
+#cadastro {
+    background-color: var(--main);
+    width: 14rem;
+    font-size: 0.9rem;
+    color: var(--neutralLight);
+}
+
+.swiper {
+  width: 600px;
+  height: 400px;
+  border-radius: 20px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  background: #eee; /* só pra ver que está funcionando */
+  border-radius: 20px;
+}
+
+.swiper-slide img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;   /* use "contain" se quiser a imagem inteira sem corte */
+   display: block;
+   border-radius: 20px;
 }
 
 .container {

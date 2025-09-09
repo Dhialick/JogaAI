@@ -1,13 +1,33 @@
 {% include 'topo_logout.html' %}
 
     <main>
-        <section id="banner">
-            <div>
-                Quer descobrir sua próxima mídia favorita?
-                <br>
-                 Clique em uma categoria abaixo e comece agora!
+
+        <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide"><img src="{{url_for('static', filename='img/gamingCover.avif')}}"></div>
+                <div class="swiper-slide"><img src="{{url_for('static', filename='img/movieCover.webp')}}"></div>
+                <div class="swiper-slide"><img src="{{url_for('static', filename='img/showsCover.webp')}}"></div>
+                <div class="swiper-slide"><img src="{{url_for('static', filename='img/booksCover.jpg')}}"></div>
             </div>
-        </section>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+
+        <div class="chamada">
+            <h3>Busque recomendações de Mídias com base nos seus gostos!</h3>
+            <button id="cadastro">Crie sua conta</button>
+            <p>Já possui conta? Faça <strong>login</strong></p>
+        </div>
     </main>
     <footer>
         <section id="brands">
@@ -19,6 +39,7 @@
         </section>
         <p id="mark">@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
     </footer>
-    <script src="{{url_for('static', filename='js/dropdown.js')}}"></script>
+    <script src="{{url_for('static', filename='js/dropdown.js')}}" defer></script>
+    <script src="{{url_for('static', filename='js/carousel.js')}}" defer ></script>
 </body>
 </html>

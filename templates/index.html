@@ -2,25 +2,28 @@
 
     <main>
 
-        <!-- Slider main container -->
         <div class="swiper">
-            <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
-                <!-- Slides -->
-                <div class="swiper-slide"><img src="{{url_for('static', filename='img/gamingCover.avif')}}"></div>
-                <div class="swiper-slide"><img src="{{url_for('static', filename='img/movieCover.webp')}}"></div>
-                <div class="swiper-slide"><img src="{{url_for('static', filename='img/showsCover.webp')}}"></div>
-                <div class="swiper-slide"><img src="{{url_for('static', filename='img/booksCover.jpg')}}"></div>
+                <div class="swiper-slide">
+                    <img src="{{url_for('static', filename='img/gamingCover.avif')}}">
+                    <div class="sticker">Encontre seu novo jogo favorito</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="{{url_for('static', filename='img/movieCover.webp')}}">
+                    <div class="sticker">Descubra clássicos e novos sucessos do cinema</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="{{url_for('static', filename='img/showsCover.webp')}}">
+                    <div class="sticker">Descubra uma nova série para maratonar</div>
+                </div>
+                <div class="swiper-slide">
+                    <img src="{{url_for('static', filename='img/booksCover.jpg')}}">
+                    <div class="sticker">Encontre sua próxima grande leitura</div>
+                </div>
             </div>
-            <!-- If we need pagination -->
             <div class="swiper-pagination"></div>
-
-            <!-- If we need navigation buttons -->
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-
-            <!-- If we need scrollbar -->
-            <div class="swiper-scrollbar"></div>
         </div>
 
         <div class="chamada">

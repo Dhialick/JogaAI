@@ -1,6 +1,12 @@
 const swiper = new Swiper('.swiper', {
   direction: 'horizontal', // ← troca para horizontal
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: true,
+  },
   loop: true,
+  speed: 500,
   pagination: {
     el: '.swiper-pagination',
   },

@@ -32,18 +32,16 @@ html {
     margin-right: 5%;
     background-color: var(--neutralLight);
     color: var(--neutralDark);
-    margin: 5% 5% 5% 5%;
     font-size: 1.125rem;
     font-family: "Rubik";
     margin-top: 0;
 }
 
 body {
-    min-width: 32rem;
+    display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
-    display: flex;
     flex-direction: column;
 }
 
@@ -164,10 +162,16 @@ li a:visited {
 */
 
 main {
-    margin-top: 2%;
+    flex: 1;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
+    margin: 0;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
+
 
 .chamada {
     display: flex;
@@ -196,7 +200,7 @@ main {
 }
 
 #cadastro {
-    background-color: var(--main);
+    background: linear-gradient(90deg, #2354f5, #1ec8ff);
     width: 14rem;
     font-size: 0.9rem;
     color: var(--neutralLight);
@@ -224,6 +228,30 @@ main {
    display: block;
    border-radius: 20px;
 }
+
+.sticker {
+    position: absolute;
+    bottom: 10%; 
+    right: 10%;
+    
+    width: 7.5rem;  /* pode ajustar o tamanho do círculo */
+    height: 7.5rem;
+    
+    background-color: rgba(255, 255, 255, 0.4); /* preto semi-transparente */
+    color: #000000;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    border-radius: 50%; /* círculo perfeito */
+    font-size: 1rem;
+    font-weight: bold;
+    
+    text-align: center;
+    padding: 5px;
+}
+
 
 .container {
     display: flex;
@@ -358,13 +386,12 @@ button:hover {
 --------------------------------------------------------------------------------
 */
 footer {
-  text-align: center;
-  font-size: 0.75rem;
-  display: flex;
-  justify-content: center;
-  margin-top: 2%;
-  flex-direction: column;
-  width: 100%;
+    text-align: center;
+    font-size: 0.7rem;
+    width: 100%;
+    background-color: var(--neutralLight);
+    color: var(--neutralDark);
+    padding: 0.5rem 0;
 }
 
 .fa-brands {

@@ -1,48 +1,110 @@
-{% include 'topo_logout.html' %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie-edge"/>
+        <title>Midia Flow</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleIndex.css') }}">
 
-    <main>
+        <!-- Ícones da biblioteca Lineicons -->
+        <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
 
-        <div class="swiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="{{url_for('static', filename='img/gamingCover.avif')}}">
-                    <div class="sticker">Encontre seu novo jogo favorito</div>
+        <!-- Ícones da Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
+
+        <!-- Estilos e scripts do carrossel Swiper -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
+        <!-- Scripts locais para funcionalidades de dropdown e carrossel -->
+        <script src="{{url_for('static', filename='js/dropdown.js')}}" defer></script>
+        <script src="{{url_for('static', filename='js/carousel.js')}}" defer ></script>
+    </head>
+
+    <body>
+        <!-- Barra de navegação principal -->
+        <nav class="menu">
+            <!-- Logo que redireciona para a home -->
+            <a href="/"><img id="logo" src="{{ url_for('static', filename='img/logo5.png' )}}" title="logo"/></a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                
+                <!-- Menu dropdown para categorias de mídia -->
+                <li class="dropdown">
+                    Midias <i class="lni lni-chevron-down"></i>
+                    <ul class="dropdown-menu" style="display: none;">
+                        <a href="/filmes"><li>Filmes</li></a>
+                        <a href="/jogos"><li>Jogos</li></a>
+                        <a href="/livros"><li>Livros</li></a>
+                        <a href="/series"><li>Series</li></a>
+                    </ul>
+                </li>
+
+                <!-- Links adicionais -->
+                <li><a href="/sobre">Sobre</a></li>
+                <li><a href="/contatos">Contato</a></li>
+                <li id="login"><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Carrossel de mídias com Swiper -->
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide de jogos -->
+                    <div class="swiper-slide">
+                        <a href="/jogos"><img src="{{url_for('static', filename='img/gamingCover.avif')}}"></a>
+                        <div class="sticker">Encontre seu novo jogo favorito</div>
+                        <div class="midia-Name"><i>The Last of Us Part II</i></div>
+                    </div>
+
+                    <!-- Slide de filmes -->
+                    <div class="swiper-slide">
+                        <a href="filmes"><img src="{{url_for('static', filename='img/movieCover.webp')}}"></a>
+                        <div class="sticker">Descubra clássicos e novos sucessos do cinema</div>
+                        <div class="midia-Name"><i>Pulp Fiction</i></div>
+                    </div>
+
+                    <!-- Slide de séries -->
+                    <div class="swiper-slide">
+                        <a href="series"><img src="{{url_for('static', filename='img/showsCover.webp')}}"></a>
+                        <div class="sticker">Descubra uma nova série para maratonar</div>
+                        <div class="midia-Name"><i>Friends</i></div>
+                    </div>
+
+                    <!-- Slide de livros -->
+                    <div class="swiper-slide">
+                        <a href="/livros"><img src="{{url_for('static', filename='img/booksCover.jpg')}}"></a>
+                        <div class="sticker">Encontre sua próxima grande leitura</div>
+                        <div class="midia-Name"><i>Jogos Vorazes</i></div>
+                    </div>
                 </div>
-                <div class="swiper-slide">
-                    <img src="{{url_for('static', filename='img/movieCover.webp')}}">
-                    <div class="sticker">Descubra clássicos e novos sucessos do cinema</div>
-                </div>
-                <div class="swiper-slide">
-                    <img src="{{url_for('static', filename='img/showsCover.webp')}}">
-                    <div class="sticker">Descubra uma nova série para maratonar</div>
-                </div>
-                <div class="swiper-slide">
-                    <img src="{{url_for('static', filename='img/booksCover.jpg')}}">
-                    <div class="sticker">Encontre sua próxima grande leitura</div>
-                </div>
+
+                <!-- Botões de navegação do carrossel -->
+                <div class="swiper- "></div> <!-- Parece estar incompleto ou incorreto -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-        </div>
 
-        <div class="chamada">
-            <h3>Busque recomendações de Mídias com base nos seus gostos!</h3>
-            <button id="cadastro">Crie sua conta</button>
-            <p>Já possui conta? Faça <strong>login</strong></p>
-        </div>
-    </main>
-    <footer>
-        <section id="brands">
-            <p>
-                <i class="fa-brands fa-square-whatsapp"></i>
-                <i class="fa-brands fa-square-linkedin"></i>
-                <i class="fa-brands fa-square-instagram"></i>
-            </p>
-        </section>
-        <p id="mark">@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
-    </footer>
-    <script src="{{url_for('static', filename='js/dropdown.js')}}" defer></script>
-    <script src="{{url_for('static', filename='js/carousel.js')}}" defer ></script>
-</body>
+            <!-- Chamada para ação: criar conta ou fazer login -->
+            <div class="chamada">
+                <h3>Busque recomendações de Mídias com base nos seus gostos!</h3>
+                <button id="cadastro">Crie sua conta</button>
+                <p>Já possui conta? Faça <strong>login</strong></p>
+            </div>
+        </main>
+
+        <!-- Rodapé com ícones de redes sociais -->
+        <footer>
+            <section id="brands">
+                <p>
+                    <i class="fa-brands fa-square-whatsapp"></i>
+                    <i class="fa-brands fa-square-linkedin"></i>
+                    <i class="fa-brands fa-square-instagram"></i>
+                </p>
+            </section>
+            <p id="mark">@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
+        </footer>
+    </body>
 </html>

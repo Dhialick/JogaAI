@@ -170,6 +170,7 @@ main {
     margin: 0;
     margin-top: 5%;
     margin-bottom: 5%;
+    gap: 20px;
 }
 
 
@@ -202,16 +203,29 @@ main {
 #cadastro {
     background: linear-gradient(90deg, #2354f5, #1ec8ff);
     width: 14rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--neutralLight);
     border-radius: 25px;
     border: 1px solid black;
+    height: 2rem;
+    font-weight: bold;
+}
+
+#cadastro:hover {
+    transform: scale(1.08);
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+#cadastro:hover {
+    transform: scale(1.05);
 }
 
 .swiper {
   width: 600px;
   height: 400px;
   border-radius: 20px;
+  border: 1px solid ;
 }
 
 .swiper-slide {
@@ -254,134 +268,15 @@ main {
     padding: 5px;
 }
 
-
-.container {
-    display: flex;
-    flex-direction: column;
+.midia-Name {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
     align-items: center;
-    gap: 1rem;
-}
-
-#formulario {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #2354f52c;
-    padding: 0.5rem;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    box-shadow: 0 0 0 1px #2354f5;
-    width: 100%;
-}
-
-form {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.campo {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    align-items: center;
-}
-
-#formulario form input {
-    background-color: #f1d9d9c5;
-    border-radius: 0.5rem;
-    font-family: "Orbitron";
-    width: 10rem;
-    padding: 0.8rem;
-    font-size: 0.5rem;
-    height: 0.01rem;
-    color: var(--background);
-}
-
-::placeholder {
-    color: var(--textColor);
-}
-
-button {
-    background-color: #ffc107d2;
-    text-align: center;
-    color: var(--textColor);
-    height: 2.5rem;
-    width: 18.75rem;
-    border-radius: 10px;
-    font-size: 1.06rem;
+    color: var(--neutralLight);
+    font-size: 0.8rem;
     font-family: "Bungee";
-    margin: 0.625rem;
 }
-
-button:hover {
-    cursor: pointer;
-    transform: scale(1.02);
-}
-
-#dados_de_busca {
-    border-bottom: 1px solid var(--icons);
-    width: 100%;
-    text-align: center;
-}
-
-#resultado {
-    background-color: #2354f52c;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 0.5rem;
-    box-shadow: 0 0 0 1px #2354f5;
-}
-
-#resultado img {
-    height: 18rem;
-    width: auto;
-    max-height: 15rem;
-    max-width: auto;
-    object-fit: cover;
-    border-radius: 5%;
-    margin-right: 1rem;
-}
-
-#resultado #game_cover {
-    height: 18rem;
-    width: auto;
-    max-height: 15rem;
-    max-width: auto;
-    object-fit: cover;
-    border-radius: 5%;
-    box-shadow: 0 0 0 1px lightgray;
-    margin-right: 1rem;
-}
-
-#nome_recomendado {
-    font-size: 1rem;
-    border-bottom: 1px solid var(--icons);
-    text-align: center;
-}
-
-.dados_recomendado {
-    justify-content: left;
-}
-
-.dados_recomendado_serie {
-    justify-content: center;
-}
-
-.game_data {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 /*
 --------------------------------------------------------------------------------
                                     Footer

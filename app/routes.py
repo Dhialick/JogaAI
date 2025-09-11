@@ -48,7 +48,7 @@ def recomendar_jogo():
                 "tags": recomendacao.tags,
                 "background_image": recomendacao.background_image}
             
-            return render_template("recomendar_jogo.html",
+            return render_template("novarec_jogo.html",
                                 dados_jogo=dados,
                                 plataformas=sorted(lista_de_plataformas_jogos),
                                 tags=sorted(lista_de_tags_jogos),
@@ -63,7 +63,7 @@ def recomendar_jogo():
                                 year=year,
                                 tag=tag)
         else:
-            return render_template("recomendar_jogo.html",
+            return render_template("novarec_jogo.html",
                                 dados_jogo=None,
                                 plataformas=sorted(lista_de_plataformas_jogos),
                                 tags=sorted(lista_de_tags_jogos),
@@ -77,7 +77,7 @@ def recomendar_jogo():
                                 year=year,
                                 tag=tag)
 
-    return render_template("recomendar_jogo.html",
+    return render_template("novarec_jogo.html",
                         dados_jogo=None,
                         plataformas=sorted(lista_de_plataformas_jogos),
                         tags=sorted(lista_de_tags_jogos),

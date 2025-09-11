@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie-edge"/>
+        <title>Midia Flow</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styleRecJogos.css') }}">
+
+        <!-- Ícones da biblioteca Lineicons -->
+        <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+
+        <!-- Ícones da Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
+
+        <!-- Estilos e scripts do carrossel Swiper -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
+        <!-- Scripts locais para funcionalidades de dropdown e carrossel -->
+        <script src="{{url_for('static', filename='js/dropdown.js')}}" defer></script>
+        <script src="{{url_for('static', filename='js/carousel.js')}}" defer ></script>
+    </head>
+<body>
+    <!-- Barra de navegação principal -->
+    <nav class="menu">
+        <!-- Logo que redireciona para a home -->
+        <a href="/"><img id="logo" src="{{ url_for('static', filename='img/logo5.png' )}}" title="logo"/></a>
+        <ul>
+            <li><a href="/">Home</a></li>
+            
+            <!-- Menu dropdown para categorias de mídia -->
+            <li class="dropdown">
+                Midias <i class="lni lni-chevron-down"></i>
+                <ul class="dropdown-menu" style="display: none;">
+                    <a href="/filmes"><li>Filmes</li></a>
+                    <a href="/jogos"><li>Jogos</li></a>
+                    <a href="/livros"><li>Livros</li></a>
+                    <a href="/series"><li>Series</li></a>
+                </ul>
+            </li>
+
+            <!-- Links adicionais -->
+            <li><a href="/sobre">Sobre</a></li>
+            <li><a href="/contatos">Contato</a></li>
+            <li id="login"><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="formularioJogo">
+            <h3>Selecione as Características Desejadas</h3>
+            <div>
+                <form id="form_jogos" action="/jogos" method="POST">
+                    <label for="genero-input">Selecione um Gênero</label>
+                    <input type="text" id="genero-input" name="genre" list="genre-list" value="{{genero or ''}}">
+                    <datalist id="genre-list">
+                        {% for g in generos %}
+                            <option value="{{g}}"></option>
+                        {% endfor %}
+                    </datalist>
+
+                    <label for="plataforma-input">Selecione uma Plataforma</label>
+                    <input type="text" id="plataforma-input" name="platform" list="platform-list" value="{{plataforma or ''}}">
+                    <datalist id="platform-list">
+                        {% for p in plataformas %}
+                            <option value="{{p}}"></option>
+                        {% endfor %}
+                    </datalist>
+
+                    <label for="loja-input">Selecione uma Loja</label>
+                    <input type="text" id="loja-input" name="store" list="store-list" value="{{loja or ''}}">
+                    <datalist id="store-list">
+                        {% for l in lojas %}
+                            <option value="{{l}}"></option>
+                        {% endfor %}
+                    </datalist>
+
+                    <label for="tag-input">Selecione uma Tag</label>
+                    <input type="text" id="tag-input" name="tag" list="tag-list" value="{{tag or ''}}">
+                    <datalist id="tag-list">
+                        {% for t in tags %}
+                            <option value="{{t}}"></option>
+                        {% endfor %}
+                    </datalist>
+
+                    <label for="ano-input">Selecione um Ano</label>
+                    <input type="text" id="ano-input" name="year" list="year-list" value="{{ano or ''}}">
+                    <datalist id="year-list">
+                        {% for ano in range(1990, 2026) %}
+                            <option value="{{ano}}"></option>
+                        {% endfor %}
+                    </datalist>
+
+                    <button id="buscarJogo" type="submit" form="form_jogos">Buscar Jogo</button>
+                </form>
+                
+            </div>
+        </section>
+
+        {% if dados_jogo %}
+        <section class="campoRecomendacoes">
+            <div class="totalRetorno">Jogos encontrados com esse filtro: <strong>{{ qtd_filtrados }}</strong></div>
+            <h3>Nossa Recomendação <i class="lni lni-angle-double-down"></i></h3>
+            <div class="conjuntoCartoes">
+                <div class="cardJogo">
+                    <img class="gameCover" src="{{dados_jogo.background_image}}">
+                    <h4>{{dados_jogo.titulo}}</h4>
+                    <div class="dados">
+                        <p>Generos: {{ dados_jogo.generos | join(', ') }}</p>
+                        <p>Plataformas: {{ dados_jogo.plataformas | join(', ') }}</p>
+                        <p>Lojas Disponíveis: {{ dados_jogo.loja | join(', ') }}</p>
+                    </div>
+                    <button class="aceitarRecomendacao"><i class="fa-solid fa-circle-check" ></i> Salvar</button>
+                </div>
+            </div>
+        </section>
+        {% endif %}
+    </main>
+
+        <footer>
+            <section id="brands">
+                <p>
+                    <i class="fa-brands fa-square-whatsapp"></i>
+                    <i class="fa-brands fa-square-linkedin"></i>
+                    <i class="fa-brands fa-square-instagram"></i>
+                </p>
+            </section>
+            <p id="mark">@ 2025, Dhialick Ferraz. Todos os direitos reservados.</p>
+        </footer>
+
+</body>
+</html>

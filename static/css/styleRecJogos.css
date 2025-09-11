@@ -28,21 +28,18 @@
 }
 
 html {
-    margin-left: 5%;
-    margin-right: 5%;
     background-color: var(--neutralLight);
     color: var(--neutralDark);
     font-size: 1.125rem;
     font-family: "Rubik";
-    margin-top: 0;
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
     flex-direction: column;
+    margin: 0;
 }
 
 a {
@@ -61,13 +58,13 @@ a:visited {
 
 .menu {
     background-color: var(--neutralDark);
-    width: 100vw;
+    width: 100%;
     height: 3.5rem;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     z-index: 1000;
-    position: sticky;
+    position: fixed;
     top: 0;
     font-size: 0.8rem;
     color: var(--neutralLight);
@@ -161,225 +158,139 @@ li a:visited {
 -------------------------------------------------------------------------
 */
 
+h1, h2, h3 {
+    margin: 0;
+}
+
 main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin: 0;
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-
-
-.chamada {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    width: 400px;
-}
-
-.chamada h3 {
-    font-size: 2rem;
-    text-align: center;
-}
-
-.chamada p {
-    margin: 0;
-    font-size: 0.6rem;
-}
-
-.chamada p strong {
-    margin: 0;
-    font-size: 0.6rem;
-    color: var(--main);
-    font-weight: bold;
-}
-
-#cadastro {
-    background: linear-gradient(90deg, #2354f5, #1ec8ff);
-    width: 14rem;
-    font-size: 0.9rem;
-    color: var(--neutralLight);
-    border-radius: 25px;
-    border: 1px solid black;
-}
-
-.swiper {
-  width: 600px;
-  height: 400px;
-  border-radius: 20px;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  background: #eee; /* só pra ver que está funcionando */
-  border-radius: 20px;
-}
-
-.swiper-slide img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;   /* use "contain" se quiser a imagem inteira sem corte */
-   display: block;
-   border-radius: 20px;
-}
-
-.sticker {
-    position: absolute;
-    bottom: 10%; 
-    right: 10%;
-    
-    width: 7.5rem;  /* pode ajustar o tamanho do círculo */
-    height: 7.5rem;
-    
-    background-color: rgba(255, 255, 255, 0.4); /* preto semi-transparente */
-    color: #000000;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    border-radius: 50%; /* círculo perfeito */
-    font-size: 1rem;
-    font-weight: bold;
-    
-    text-align: center;
-    padding: 5px;
-}
-
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-#formulario {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #2354f52c;
-    padding: 0.5rem;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    box-shadow: 0 0 0 1px #2354f5;
     width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    padding: 5%;
+}
+
+.formularioJogo {
+    background-color: #111111db;
+    color: var(--neutralLight);
+    padding: 3%;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.formularioJogo div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 25px;
 }
 
 form {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 15px;
+    width: 300px;
+    height: auto;
+    margin: 1%;
 }
 
-.campo {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-    align-items: center;
+label {
+    font-size: 14px;
 }
 
-#formulario form input {
-    background-color: #f1d9d9c5;
-    border-radius: 0.5rem;
-    font-family: "Orbitron";
+input {
+    border-radius: 15px;
+    height: 20px;
     width: 10rem;
-    padding: 0.8rem;
-    font-size: 0.5rem;
-    height: 0.01rem;
-    color: var(--background);
-}
-
-::placeholder {
-    color: var(--textColor);
-}
-
-button {
-    background-color: #ffc107d2;
+    background-color: #1ec7ffb1;
     text-align: center;
-    color: var(--textColor);
-    height: 2.5rem;
-    width: 18.75rem;
-    border-radius: 10px;
-    font-size: 1.06rem;
-    font-family: "Bungee";
-    margin: 0.625rem;
+    color: var(--neutralLight);
 }
 
-button:hover {
-    cursor: pointer;
-    transform: scale(1.02);
-}
-
-#dados_de_busca {
-    border-bottom: 1px solid var(--icons);
-    width: 100%;
-    text-align: center;
-}
-
-#resultado {
-    background-color: #2354f52c;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    width: 100%;
+.campoRecomendacoes {
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 0.5rem;
-    box-shadow: 0 0 0 1px #2354f5;
-}
-
-#resultado img {
-    height: 18rem;
-    width: auto;
-    max-height: 15rem;
-    max-width: auto;
-    object-fit: cover;
-    border-radius: 5%;
-    margin-right: 1rem;
-}
-
-#resultado #game_cover {
-    height: 18rem;
-    width: auto;
-    max-height: 15rem;
-    max-width: auto;
-    object-fit: cover;
-    border-radius: 5%;
-    box-shadow: 0 0 0 1px lightgray;
-    margin-right: 1rem;
-}
-
-#nome_recomendado {
-    font-size: 1rem;
-    border-bottom: 1px solid var(--icons);
-    text-align: center;
-}
-
-.dados_recomendado {
-    justify-content: left;
-}
-
-.dados_recomendado_serie {
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 25px;
+    border-radius: 15px;
+    color: var(--neutralLight);
 }
 
-.game_data {
+.campoRecomendacoes h3, .campoRecomendacoes .lni {
+    color: var(--neutralDark);
+}
+
+
+.conjuntoCartoes {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.cardJogo {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: #111111db;
+    padding-bottom: 3%;
+    border-radius: 15px;
+    color: var(--neutralLight);
+    object-fit: cover;
+    padding: 10px;
+}
+
+.gameCover {
+    width: 300px;
+    height: 180px;
+    border-radius: 15px;
+}
+
+.aceitarRecomendacao {
+    font-size: 1.2rem;
+    background-color: var(--highlight);
+    color: var(--neutralLight);
+    border-radius: 25px;
+    padding: 5px;
+    width: 40%;
+}
+
+.aceitarRecomendacao:hover {
+    background-color: rgb(106, 180, 67);
+    transform: scale(1.08);
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+#buscarJogo {
+    background-color: #1ec7ff94;
+    border-radius: 15px;
+    height: 30px;
+    width: 150px;
+    font-size: 1rem;
+    color: var(--neutralLight);
+    margin-top: 3%;
+}
+
+#buscarJogo:hover {
+    transform: scale(1.08);
+    transition: 0.2s ease;
+    font-weight: bold;
+}
+
+.totalRetorno {
+    background-color: #111111db;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 0.8rem;
 }
 
 /*
@@ -394,6 +305,7 @@ footer {
     background-color: var(--neutralLight);
     color: var(--neutralDark);
     padding: 0.5rem 0;
+    bottom: 0;
 }
 
 .fa-brands {
@@ -407,5 +319,5 @@ footer {
 }
 
 #mark {
-    margin: 1%;
+    margin-top: 1%;
 }
